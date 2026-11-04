@@ -105,3 +105,15 @@ What doesn't work:
   - Only interesting, then-vs-tonight content.
   - Follow the news narrative.
   - Fix bugs from the logs proactively.
+
+## Reusing this for a future election
+
+The current setup is tuned to the 2026-11-03 narrative: Senate-first, then Michigan and Maine after the Senate was called. To reuse it:
+- **`server/config.mjs`:**
+  - `WATCH`: the races you care about. For hometown races, set `contest` names from the BOE `/data` and `town` for the ED matching.
+  - Kalshi event tickers.
+  - The NYT date path (`NYT_BASE`).
+  - The Enhanced Voting election id (`GE2026`).
+- **`public/js/director.js` `PLAYLIST`:** rebalance the segments for the night's story. Ad-hoc jumps (clicks and keys) work for any segment id.
+- **`server/store.mjs`:** `POLLS_FIRST_CLOSE`, and the hard-coded `pollClose` values in `WATCH`.
+- **Rerun the `scripts/build-*.mjs` prebakes** for new towns: terrain bbox, history, Election Day lean, insights, local stories and images.

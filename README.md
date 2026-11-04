@@ -171,4 +171,4 @@ Code is released under the [MIT License](LICENSE).
 
 The local photos in `public/geo/local/` come from Wikimedia Commons under their own licenses (CC BY-SA and public domain). Authors and licenses are listed in [`public/geo/local-images.json`](public/geo/local-images.json). Map data is from [us-atlas](https://github.com/topojson/us-atlas). Election data belongs to its respective sources.
 
-<div align="center"><sub>Built on election night by <a href="https://github.com/pj4533">@pj4533</a> and Claude Code. Good luck, Trevor. 🗳️</sub></div>
+<div align="center"><sub>Built on election night by <a href="https://github.com/pj4533">@pj4533</a> and Claude Code. Congrats, Trevor! 🎉🗳️</sub></div>

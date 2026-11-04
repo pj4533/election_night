@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Election Night 2026 \u2014 24-hour-news-style 3D live results broadcast",
+  "description": "Election Night 2026 — 24-hour-news-style 3D live results broadcast",
   "scripts": {
     "start": "node server/index.mjs",
     "sim": "SIM=1 PORT=4174 node server/index.mjs",
@@ -15,5 +15,13 @@
     "three": "^0.170.0",
     "topojson-client": "^3.1.0",
     "us-atlas": "^3.0.1"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pj4533/election_night"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }

@@ -34,8 +34,7 @@ Project for building live US election-results dashboards/visualizations. Started
 
 ## Deploy (Vercel)
 
-- Public URL: https://electionnight-three.vercel.app (project `election_night`).
-- Redeploy: `vercel deploy --prod --yes`. This builds `dist/` via `scripts/build-static.mjs` (public plus vendor libs).
+- The 2026 Vercel project was deleted after election night. To deploy again, run `vercel link` to create or link a project, then `vercel deploy --prod --yes`. This builds `dist/` via `scripts/build-static.mjs` (public plus vendor libs).
 - `api/index.mjs` runs the whole app (`server/app.mjs`: pollers, SSE, API) inside one Fluid Compute function. Its config: `maxDuration` 300, SSE reconnects automatically, and `DATA_DIR`/`LOG_DIR` point at /tmp. `vercel.json` rewrites `/events` and `/api/*` to that function with `?p=`.
 - On Vercel, `/api/test-event` is disabled.
 - **Any data file the server reads at runtime must be listed in `vercel.json` `functions.includeFiles`.** Otherwise it silently doesn't exist on Vercel. Missing `data/hometown-baseline.json` made the public site show a false "DONE · can't be caught" for Pine Plains. The outlook code also refuses to call DONE while Election Day is out or the baseline is missing.
@@ -43,7 +42,7 @@ Project for building live US election-results dashboards/visualizations. Started
 
 ## Shipping rule
 
-Every change goes live in BOTH places: run `npm run ship`. It syntax-checks, restarts local :4173 by PID and deploys Vercel prod. Never fix locally only. Never restart with `pkill` either, because that kills agents' test servers too.
+Every change goes live in BOTH places: run `npm run ship`. It syntax-checks, restarts local :4173 by PID, and deploys Vercel prod if the folder is linked (`.vercel/project.json`). Never fix locally only. Never restart with `pkill` either, because that kills agents' test servers too.
 
 ## Layout and sizing
 

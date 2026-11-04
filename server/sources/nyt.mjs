@@ -41,7 +41,11 @@ function raceStory({ cands, counties, tru, pa, pb }) {
   }
   let model = null;
   const qa = L?.quantiles, qb = T?.quantiles;
-  if (qa?.length >= 3 && qb?.length >= 3) model = { lead: L.last, party: L.party, trail: T.last, margin: Math.round(1000 * (qa[2] - qb[2])) / 10 };
+  if (qa?.length >= 3 && qb?.length >= 3) {
+    // the model's median can favor the candidate who TRAILS the count — name the model's leader ("OSBORN +-11.2" bug)
+    const m = Math.round(1000 * (qa[2] - qb[2])) / 10;
+    model = m >= 0 ? { lead: L.last, party: L.party, trail: T.last, margin: m } : { lead: T.last, party: T.party, trail: L.last, margin: -m };
+  }
   return { left, need, swing, model, remaining };
 }
 

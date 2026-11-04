@@ -17,7 +17,7 @@ export function derive(state) {
     .sort((a, b) => b.score - a.score);
   if (ready[0] && ready[0].f.winProb >= 0.9) {
     const { r, f } = ready[0];
-    out.push({ k: 'NEXT CALL LIKELY', big: `${(r.stateName || '').toUpperCase()} ${OFF[r.officeId]}`, line: `${L(f)} (${f.party === 'DEM' ? 'D' : f.party === 'GOP' ? 'R' : 'I'}) · forecast ${Math.round(100 * f.winProb)}% · ${Math.round(r.eevp)}% counted`, p: f.party });
+    out.push({ k: 'NEXT CALL LIKELY', big: `${(r.stateName || '').toUpperCase()} ${OFF[r.officeId]}`, line: `${L(f)} (${f.party === 'DEM' ? 'D' : f.party === 'GOP' ? 'R' : 'I'}) · forecast ${Math.round(100 * f.winProb)}%${f.odds != null ? ` · bettors ${Math.round(100 * f.odds)}%` : ''} · ${Math.round(r.eevp)}% counted`, p: f.party });
   }
   // 2) SENATE CLINCHER
   const sen = state?.control?.senate?.seats || {};
@@ -27,14 +27,14 @@ export function derive(state) {
       .sort((a, b) => (b.d.winProb * (0.4 + (b.r.eevp || 0) / 166)) - (a.d.winProb * (0.4 + (a.r.eevp || 0) / 166)));
     if (dS[need - 1]) {
       const { r, d } = dS[need - 1];
-      out.push({ k: need === 1 ? 'THE SENATE CLINCHER' : `SEAT 51 MOST LIKELY FROM`, big: `${(r.stateName || '').toUpperCase()}`, line: `${L(d)} · forecast ${Math.round(100 * d.winProb)}% · ${Math.round(r.eevp || 0)}% counted · Dems need ${need}`, p: 'DEM' });
+      out.push({ k: need === 1 ? 'THE SENATE CLINCHER' : `SEAT 51 MOST LIKELY FROM`, big: `${(r.stateName || '').toUpperCase()}`, line: `${L(d)} · forecast ${Math.round(100 * d.winProb)}%${d.odds != null ? ` · bettors ${Math.round(100 * d.odds)}%` : ''} · ${Math.round(r.eevp || 0)}% counted · Dems need ${need}`, p: 'DEM' });
     }
   }
   // 3) REVERSAL WATCH: current leader ≠ forecast favorite (≥ 70%)
   for (const r of races) {
     const f = fav(r), l = lead(r);
     if (f && l && f.party !== l.party && f.winProb >= 0.7 && r.eevp < 90) {
-      out.push({ k: 'REVERSAL WATCH', big: `${(r.stateName || '').toUpperCase()} ${OFF[r.officeId]}`, line: `${L(l)} leads now, but the vote still out favors ${L(f)} (${Math.round(100 * f.winProb)}%)`, p: f.party });
+      out.push({ k: 'REVERSAL WATCH', big: `${(r.stateName || '').toUpperCase()} ${OFF[r.officeId]}`, line: `${L(l)} leads now, but the vote still out favors ${L(f)} (forecast ${Math.round(100 * f.winProb)}%${f.odds != null ? `, bettors ${Math.round(100 * f.odds)}%` : ''})`, p: f.party });
       if (out.filter((x) => x.k === 'REVERSAL WATCH').length >= 3) break;
     }
   }
@@ -44,7 +44,7 @@ export function derive(state) {
     const favP = /dem$/.test(r.rating) ? 'DEM' : /rep$/.test(r.rating) ? 'GOP' : null;
     if (favP && l.party !== favP && (l.winProb ?? 0) >= 0.5) { // forecast must agree the underdog is now favored
       const t = [...r.candidates].sort((a, b) => b.votes - a.votes);
-      out.push({ k: 'UPSET ALERT', big: `${(r.stateName || '').toUpperCase()} ${OFF[r.officeId]}`, line: `${L(l)} leads by ${(t[0].pct - t[1].pct).toFixed(1)} · race was rated ${String(r.rating).replace('-', ' ')} · ${Math.round(r.eevp)}% in`, p: l.party });
+      out.push({ k: 'UPSET ALERT', big: `${(r.stateName || '').toUpperCase()} ${OFF[r.officeId]}`, line: `${L(l)} leads by ${(t[0].pct - t[1].pct).toFixed(1)} · rated ${String(r.rating).replace('-', ' ')}${l.odds != null ? ` · bettors ${Math.round(100 * l.odds)}%` : ''} · ${Math.round(r.eevp)}% in`, p: l.party });
       if (out.filter((x) => x.k === 'UPSET ALERT').length >= 2) break;
     }
   }

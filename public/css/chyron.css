@@ -58,3 +58,5 @@
 #chyron .cy-t3 .mid { color: var(--amber); }
 #chyron .cy-clock { color: var(--text); font-size: 1.9vh; text-shadow: 0 0 .8vh var(--cyan); }
 #chyron .cy-dot { display: inline-block; width: .8vh; height: .8vh; border-radius: 50%; background: #3dff8a; margin-right: .5vw; box-shadow: 0 0 .8vh #3dff8a; animation: cy-pulse .9s infinite alternate; }
+
+#chyron .bet { color: var(--yellow); font-family: var(--font-mono); font-size: .85em; }

@@ -127,7 +127,7 @@ export function createStore() {
         const pb = s.partyControl?.S?.party_balance || {};
         const won = (p) => (pb[p]?.no_election || 0) + Object.values(s.races).filter((r) => r.officeId === 'S' && r.nytId !== next.nytId && r.candidates.some((c) => c.winner && c.party === p)).length + (winner.party === p ? 1 : 0);
         const d = won('DEM'), g = won('GOP'), toWin = s.partyControl?.S?.to_win?.DEM || 51;
-        seatLine = d >= toWin ? `DEMS NOW ${d} · SENATE CONTROL CLINCHED` : `DEMS NOW ${d} · NEED ${toWin - d} MORE · GOP ${g}`;
+        seatLine = d >= toWin ? (winner.party === 'DEM' && d === toWin ? `DEMS NOW ${d} · SENATE CONTROL CLINCHED` : `DEMS HOLD ${d} · GOP ${g}`) : `DEMS NOW ${d} · NEED ${toWin - d} MORE · GOP ${g}`;
       }
       pushEvent({
         type: 'call', priority: watched ? 4 : next.officeId === 'S' ? 3 : (String(next.rating || '').startsWith('solid') ? 2 : 3), raceKey: next.key, party: winner.party,
@@ -222,17 +222,34 @@ export function createStore() {
     return control;
   }
 
+  // Betting odds on EVERY race card (user: "in every possible place"): Kalshi + Polymarket race markets,
+  // averaged; non-GOP independents (e.g. Osborn, NE) take the non-GOP side of the market.
+  function withRaceOdds(r) {
+    if (!r) return r;
+    const key = raceKeyOf(r); if (!key) return r;
+    const kal = s.raceOdds?.kalshi?.[key], pol = s.raceOdds?.polymarket?.[key];
+    if (!kal && !pol) return r;
+    const hasDem = r.candidates.some((c) => c.party === 'DEM');
+    const pick = (m, c) => (m ? (m[c.party] ?? (!hasDem && c.party !== 'GOP' ? m.DEM : undefined)) : undefined);
+    const candidates = r.candidates.map((c) => {
+      if (c.odds != null) return c;
+      const v = [pick(kal, c), pick(pol, c)].filter((x) => x != null);
+      return v.length ? { ...c, odds: v.reduce((a, x) => a + x, 0) / v.length } : c;
+    });
+    return { ...r, candidates };
+  }
+
   function snapshot() {
     const spot = s.spotlight.map((id) => {
       const st = s.races[id];
       const co = s.countyRaces[id];
-      return st ? { ...st, counties: co?.counties, story: co?.story } : null;
+      return st ? withRaceOdds({ ...st, counties: co?.counties, story: co?.story }) : null;
     }).filter(Boolean);
     return {
       now: Date.now(), startedAt: s.startedAt,
-      watch: WATCH.map((w) => s.watch[w.key]).filter(Boolean),
+      watch: WATCH.map((w) => s.watch[w.key]).filter(Boolean).map((r) => (r.kind === 'nyt' ? withRaceOdds(r) : r)),
       spotlight: spot,
-      races: Object.values(s.races).map(({ counties, description, story, ...r }) => r),
+      races: Object.values(s.races).map(({ counties, description, story, ...r }) => withRaceOdds(r)),
       partyControl: s.partyControl, pollClosings: s.pollClosings,
       insights: s.insights.slice(0, 30), news: s.news.filter((n) => !n.date || Date.now() - n.date < 3 * 3600_000).slice(0, 60), odds: s.odds, // only fresh headlines (no stale narrative)
       dutchessTicker: s.dutchessTicker, events: s.events.filter((e) => Date.now() - e.ts < 45 * 60_000).slice(0, 40), sources: s.sources,

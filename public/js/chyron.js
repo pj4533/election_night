@@ -31,7 +31,7 @@ export function createChyron(root) {
 
   // ---------- helpers
   const byKey = (k) => state?.races?.find((r) => r.key === k) || state?.watch?.find((r) => r.key === k);
-  const candSpan = (c, withPct = true) => `<span class="${pc(c.party)}">${esc(c.last || c.name.split(' ').pop())} (${PL(c.party)})</span>` + (withPct ? ` <span class="num">${fmtPct(c.pct)}</span>` : '');
+  const candSpan = (c, withPct = true) => `<span class="${pc(c.party)}">${esc(c.last || c.name.split(' ').pop())} (${PL(c.party)})</span>` + (withPct ? ` <span class="num">${fmtPct(c.pct)}</span>` : '') + (c.odds != null && !c.winner ? ` <span class="bet">bets ${Math.round(c.odds * 100)}%</span>` : '');
   const PL = (p) => ({ DEM: 'D', GOP: 'R', LIB: 'L', GRN: 'G', OTH: 'I', WRI: 'W' }[p] || (p || '?')[0]);
   const top2 = (r) => (r.candidates || []).filter((c) => c.party !== 'WRI').slice(0, 2);
   const eevpTxt = (r) => (r.eevp != null && r.kind === 'nyt' ? ` <span class="dim">${Math.round(r.eevp)}% IN</span>` : '');

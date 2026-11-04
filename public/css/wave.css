@@ -17,3 +17,4 @@
 .wv-tag { font: 900 .75vw var(--font-display); color: #07021a; background: var(--yellow); padding: .2vh .4vw; }
 .wv-flip.up .wv-tag { background: var(--magenta); color: #fff; }
 .wv-none { font: 700 1vw var(--font-ui); color: var(--muted); }
+.wv-flip { grid-template-columns: 1.4fr .9fr 1.4fr auto auto; } .wv-bet { font: 700 .8vw var(--font-mono); color: var(--yellow); }

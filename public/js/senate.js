@@ -68,7 +68,7 @@ export function createSenate(root) {
         <div class="sw-mg">${I.lead ? `${esc((I.lead.last || I.lead.name).toUpperCase())} <b>+${I.pts.toFixed(1)}</b> <small>${I.votes.toLocaleString('en-US')} votes</small>` : '—'}</div>
         <div class="sw-split"><i class="d" style="width:${I.dp ?? 50}%"></i><i class="r"></i><span class="sw-mid"></span></div>
         <div class="sw-names"><span class="d">${esc(dl)}</span><span class="r">${esc(gl)}</span></div>
-        <div class="sw-status">${I.status}${fp != null ? ` · <span>NYT: ${esc((fav.last || fav.name).toUpperCase())} ${fp}%</span>` : ''}</div>
+        <div class="sw-status">${I.status}${fp != null ? ` · <span>NYT: ${esc((fav.last || fav.name).toUpperCase())} ${fp}%</span>` : ''}${fav?.odds != null ? ` · <span>BETTORS ${Math.round(100 * fav.odds)}%</span>` : ''}</div>
       </div>`;
     }).join('');
     // derived path to 51
@@ -101,7 +101,7 @@ export function createSenate(root) {
         <div class="lad-n">${x.seat === need ? '★ 51' : x.seat}</div>
         <div class="lad-st">${esc((x.r.stateName || '').toUpperCase())}</div>
         <div class="lad-w">${w}</div>
-        <div class="lad-c">${esc(ln)} · ${now}</div>
+        <div class="lad-c">${esc(ln)} · ${now}${x.cand.odds != null ? ` · <b class="lad-bet">BETTORS ${Math.round(100 * x.cand.odds)}%</b>` : ''}</div>
       </div>`;
     };
     const tipTxt = won ? '✓ DEMOCRATS HAVE 51 SEATS' : tip ? `THE 51ST SEAT: ${esc((tip.r.stateName || '').toUpperCase())} · ${tier(tip.p)[0]}` : 'NO PATH TO 51 RIGHT NOW';

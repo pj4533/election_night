@@ -68,3 +68,4 @@
 .lad-key span { font-weight: 900; } .lad-key .safe { color: #3dff8a; } .lad-key .likely { color: var(--dem); } .lad-key .lean { color: var(--yellow); } .lad-key .risk { color: var(--gop); }
 .sw-mark em { display: none; } /* ladder shows ★51; label collided with projection badge */
 .sw-head small { font: 700 1.2vw var(--font-ui); color: var(--yellow); text-shadow: none; margin-left: 1vw; }
+.lad-bet { color: var(--yellow); font-weight: 900; }

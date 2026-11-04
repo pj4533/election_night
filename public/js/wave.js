@@ -26,7 +26,7 @@ export function createWave(root) {
     const dTotal = flipBy('DEM') + hFlipD, rTotal = flipBy('GOP') + hFlipR;
     const head = dTotal > rTotal * 2 && dTotal >= 3 ? 'A DEMOCRATIC WAVE' : rTotal > dTotal * 2 && rTotal >= 3 ? 'A REPUBLICAN WAVE' : 'THE NIGHT SO FAR';
     const stat = (n, label, p) => `<div class="wv-stat" style="--pc:${col(p)}"><b>${n}</b><span>${label}</span></div>`;
-    const flipRow = (r) => { const w = won(r); return `<div class="wv-flip" style="--pc:${col(w.party)}"><span class="wv-st">${esc((r.stateName || '').toUpperCase())}</span><span class="wv-of">${OFF[r.officeId] || ''}</span><span class="wv-w">${esc((w.last || w.name).toUpperCase())} (${w.party === 'DEM' ? 'D' : w.party === 'GOP' ? 'R' : 'I'})</span><span class="wv-tag">FLIP</span></div>`; };
+    const flipRow = (r) => { const w = won(r); return `<div class="wv-flip" style="--pc:${col(w.party)}"><span class="wv-st">${esc((r.stateName || '').toUpperCase())}</span><span class="wv-of">${OFF[r.officeId] || ''}</span><span class="wv-w">${esc((w.last || w.name).toUpperCase())} (${w.party === 'DEM' ? 'D' : w.party === 'GOP' ? 'R' : 'I'})</span>${w.odds != null ? `<span class="wv-bet">BETS ${Math.round(100 * w.odds)}%</span>` : ''}<span class="wv-tag">FLIP</span></div>`; };
     const upRow = (r) => { const w = won(r); return `<div class="wv-flip up" style="--pc:${col(w.party)}"><span class="wv-st">${esc((r.stateName || '').toUpperCase())}</span><span class="wv-of">${OFF[r.officeId] || ''}</span><span class="wv-w">${esc((w.last || w.name).toUpperCase())}</span><span class="wv-tag">RATED ${esc(String(r.rating).replace('-', ' ').toUpperCase())}</span></div>`; };
     const html = `
       <div class="wv-kick">THE BIG PICTURE · PICKUPS & UPSETS</div>

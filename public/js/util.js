@@ -33,3 +33,6 @@ export function tweenNumber(elm, to, { dur = 900, format = fmtInt } = {}) {
   };
   requestAnimationFrame(step);
 }
+
+// betting odds label for any candidate that has a market (Kalshi + Polymarket avg, 0-1)
+export const betTxt = (c) => (c?.odds != null && !isNaN(c.odds) ? `BETTORS ${Math.round(c.odds * 100)}%` : '');

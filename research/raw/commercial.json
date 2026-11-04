@@ -1,0 +1,90 @@
+{
+  "key": "commercial",
+  "sources": [
+    {
+      "name": "AP Elections API",
+      "url": "https://developer.ap.org/ap-elections-api",
+      "cost": "No public price found. Third-party sources (archived python-elections repo) say it is paid and sales-gated; an aggregator (apis.io) calls it freemium with no trial (unverified). Typically enterprise or newsroom pricing.",
+      "latency": "Not stated in the sources I could read. In practice AP is the main source for election-night calls. Quota is per-minute and set per key.",
+      "granularity": "National, state, county, and precinct-level reporting units, per the 2016 developer guide.",
+      "verified_live": "Portal page returns HTTP 200. api.ap.org/v2/elections returns 403, which means a key is required. WebFetch was blocked for developer.ap.org, so I could not read pricing or access terms.",
+      "notes": "The API Explorer needs an API key, and keys are issued by AP Customer Support rather than self-registered. An individual almost certainly cannot buy access tonight. Anecdotal reports say it is for news organizations only.",
+      "auth": "API key issued by AP",
+      "format": "JSON (v2 REST)",
+      "official": "Yes, official and commercial"
+    },
+    {
+      "name": "Decision Desk HQ Results API (v4/v5)",
+      "url": "https://docs.decisiondeskhq.com/ (redirects to https://ddhq-election-results.readme.io/)",
+      "cost": "No published price. Contact sales. The DDHQ site says to contact them for API or embed delivery. Broadcast license is a separate product with no dollar amount published. DDHQ Enterprise (a branded Votes portal) is also quote-only.",
+      "latency": "Not stated. Docs mention a vote-history endpoint that records every vote update. No timing is given.",
+      "granularity": "Race-level data, plus congress control, electoral college, and balance-of-power endpoints. Also polling averages, vote history, and forecast data. Precinct depth is not confirmed.",
+      "verified_live": "Docs site is up (HTTP 200 after redirects). The API itself was not probed because credentials are required.",
+      "notes": "A production-identical Testing Environment exists, but access instructions were not found. The free DDHQ Votes website (decisiondeskhq.com) is a human-readable fallback, but there is no free API tier that I could confirm. An individual probably has to go through sales.",
+      "auth": "OAuth token endpoint at /api/v4/oauth/token. Scopes are read and forecast. No public signup was found.",
+      "format": "JSON REST",
+      "official": "Yes, official commercial feed. DDHQ is an independent decision desk."
+    },
+    {
+      "name": "Kalshi public market-data API",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/",
+      "cost": "Free for market data.",
+      "latency": "Near real time. Prices move as traders react to returns. Docs also advertise websockets, which I did not probe.",
+      "granularity": "National and race-level only. It carries odds, not vote counts. Examples: CONTROLH-2026 (House control) and per-race markets.",
+      "verified_live": "YES. GET /markets?event_ticker=CONTROLH-2026 returned JSON, HTTP 200, no key. The Democratic House contract showed last_price 0.97 in my probe. The events endpoint returned CONTROLH-2026 with last_updated_ts 2026-10-28.",
+      "notes": "This is a proxy signal, not results. It is useful as a live implied-probability overlay on a dashboard. Trading requires an account, but reads do not.",
+      "auth": "None for public reads",
+      "format": "JSON REST (websocket also offered)",
+      "official": "Official public API from a regulated exchange"
+    },
+    {
+      "name": "Polymarket Gamma API",
+      "url": "https://gamma-api.polymarket.com/",
+      "cost": "Free.",
+      "latency": "Near real time for prices. Gamma is a metadata and price snapshot layer; the CLOB API and websocket give live order books.",
+      "granularity": "National and race-level odds only. No vote counts.",
+      "verified_live": "YES. /events returned JSON, HTTP 200, no key. The slug which-party-will-win-the-house-in-2026 (id 32225) resolves. A search for house control returned a market on the November 2 favorite.",
+      "notes": "Same use as Kalshi: a probability overlay, not results. Some markets resolve against third-party sources, so read each market's rules. Polymarket access may be geo-restricted for trading, but reads worked from here.",
+      "auth": "None for reads",
+      "format": "JSON REST",
+      "official": "Official public API"
+    },
+    {
+      "name": "Cicero (Azavea/Cicero Data)",
+      "url": "https://www.cicerodata.com/pricing/",
+      "cost": "API credits at roughly $40 minimum purchase. Bulk packages run from about $298 up to about $8,848 (list vs discounted tiers, e.g. $298/$268). One credit equals one address matched to districts and officials. These are credit-pack prices and I did not map each price to a credit count.",
+      "latency": "Not applicable. This is not an election results feed.",
+      "granularity": "Address to district and elected official lookup.",
+      "verified_live": "Site returns HTTP 200 and the pricing page loaded.",
+      "notes": "Useful only for a lookup feature, such as an address to its districts and candidates. It does not provide results.",
+      "auth": "API key via signup (self-serve)",
+      "format": "JSON REST",
+      "official": "Commercial"
+    },
+    {
+      "name": "Ballotpedia API",
+      "url": "https://ballotpedia.org/API",
+      "cost": "Not confirmed. I did not find a published price.",
+      "latency": "Not a live results feed. Ballotpedia publishes results after the fact on its wiki pages.",
+      "granularity": "Candidates, districts, and races. Results lag.",
+      "verified_live": "Not confirmed. My curl loop failed before this URL was probed, and api.ballotpedia.org was not checked either.",
+      "notes": "Treat as unverified. It is more of a candidate and ballot data product than a live count feed.",
+      "auth": "Unknown",
+      "format": "Unknown",
+      "official": "Commercial/partner"
+    },
+    {
+      "name": "Reuters / Edison Research",
+      "url": "https://www.edisonresearch.com/",
+      "cost": "Not researched. These are enterprise feeds sold to media organizations. No public pricing was found, and I did not search further.",
+      "latency": "Not verified.",
+      "granularity": "Not verified.",
+      "verified_live": "NO. I did not probe these.",
+      "notes": "Almost certainly not available to an individual on election night. I ran no searches for this or for Clarity/Civix, RapidAPI, or other cheap resellers, so those are gaps in my slice. The Clarity/Civix item is also the Clarity Elections (SOE) per-county results feed, which could cover some counties but was not checked.",
+      "auth": "Unknown",
+      "format": "Unknown",
+      "official": "Yes, commercial media feeds"
+    }
+  ],
+  "summary": "Short version: there is no cheap, self-serve, real-time paid results API that an individual can buy tonight. The two real commercial feeds, AP and Decision Desk HQ, are both sales-gated with no published prices. The only live APIs I could probe and use right now are the free Kalshi and Polymarket market APIs. They give odds, not vote counts.\n\nWhat I verified with curl tonight:\n- Kalshi: https://api.elections.kalshi.com/trade-api/v2/markets?event_ticker=CONTROLH-2026 returned JSON with HTTP 200 and no key. The Democratic House contract showed last_price 0.97.\n- Polymarket: https://gamma-api.polymarket.com/events returned JSON with HTTP 200 and no key. The slug which-party-will-win-the-house-in-2026 resolves.\n- AP: the developer portal loads, but api.ap.org/v2/elections returned 403 without a key.\n- DDHQ: the docs site loads. The API needs OAuth credentials that I could not obtain.\n\nWhat I could not confirm:\n- No AP or DDHQ prices. Both appear to be contact-sales only.\n- Whether DDHQ has any hobbyist tier. I found none.\n- Update latency for AP and DDHQ was not stated in anything I could read.\n- Reuters/Edison, Clarity/Civix, Ballotpedia, RapidAPI listings, and other cheap resellers were not searched or probed, so my slice is incomplete there. Another agent should cover county-level sources such as Clarity/SOE feeds and the Dutchess County BOE.\n\nDashboard implication: prediction-market odds plus any free official or state/county feeds from other slices are the realistic route tonight. Paid AP or DDHQ access would need a sales conversation and is unlikely to be granted to an individual in time."
+}

@@ -1,0 +1,15 @@
+node_modules/
+dist/
+logs/
+logs-sim/
+data-sim/
+.vercel
+.env*
+.playwright-mcp/
+logs-boot.txt
+# runtime data (regenerated live); keep the small static inputs the server needs
+data/raw/
+data/history.jsonl
+!data/hometown-baseline.json
+!data/hometown-history.json
+!data/kalshi-races.json

@@ -1,0 +1,87 @@
+{
+ "generatedAt": "2026-11-04T02:13:19.785978Z",
+ "note": "total = sum of option votes in a countywide vote-for-1 contest (2025 Statewide Proposal, 2024 President, 2023 County Executive); under/over not reported. 2024 Absentee/EMB bucket = ABS/AFF/EVBM (includes affidavit). 2023 precinct names are \"Town of X*ED n*\". 2023 has no method breakdown in the API (methods=null).",
+ "eds": {
+  "Pine Plains ED 1": {
+   "2025": {
+    "contest": "Statewide Proposal",
+    "total": 802,
+    "methods": {
+     "Election Day": 624,
+     "Early Voting": 135,
+     "Absentee/EMB": 43,
+     "Affidavit": 0
+    }
+   },
+   "2024": {
+    "contest": "President of the United States of America",
+    "total": 1389,
+    "methods": {
+     "Election Day": 895,
+     "Early Voting": 319,
+     "Absentee/EMB": 175,
+     "Affidavit": 0
+    }
+   },
+   "2023": {
+    "contest": "County Executive",
+    "total": 820,
+    "methods": null
+   }
+  },
+  "Stanford ED 1": {
+   "2025": {
+    "contest": "Statewide Proposal",
+    "total": 669,
+    "methods": {
+     "Election Day": 404,
+     "Early Voting": 233,
+     "Absentee/EMB": 32,
+     "Affidavit": 0
+    }
+   },
+   "2024": {
+    "contest": "President of the United States of America",
+    "total": 1127,
+    "methods": {
+     "Election Day": 528,
+     "Early Voting": 464,
+     "Absentee/EMB": 135,
+     "Affidavit": 0
+    }
+   },
+   "2023": {
+    "contest": "County Executive",
+    "total": 688,
+    "methods": null
+   }
+  },
+  "Stanford ED 2": {
+   "2025": {
+    "contest": "Statewide Proposal",
+    "total": 655,
+    "methods": {
+     "Election Day": 416,
+     "Early Voting": 213,
+     "Absentee/EMB": 26,
+     "Affidavit": 0
+    }
+   },
+   "2024": {
+    "contest": "President of the United States of America",
+    "total": 1090,
+    "methods": {
+     "Election Day": 529,
+     "Early Voting": 432,
+     "Absentee/EMB": 129,
+     "Affidavit": 0
+    }
+   },
+   "2023": {
+    "contest": "County Executive",
+    "total": 641,
+    "methods": null
+   }
+  }
+ }
+}

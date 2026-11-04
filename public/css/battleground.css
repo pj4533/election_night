@@ -1,0 +1,55 @@
+#battle { position: fixed; inset: 0; z-index: 15; pointer-events: none; }
+.cc-hud { position: fixed; left: 26vw; width: 45vw; top: 73.4vh; height: 5.6vh; display: flex; gap: .5vw; }
+.cc-half { flex: 1; min-width: 0; padding: .3vh .6vw; background: linear-gradient(180deg, rgba(14,6,40,.88), rgba(8,3,28,.92)); border: 1px solid rgba(0,240,255,.5);
+  border-bottom-color: rgba(255,43,214,.6); box-shadow: 0 0 1.2vh rgba(0,240,255,.25), inset 0 0 1vh rgba(138,43,226,.25); display: flex; flex-direction: column; justify-content: space-between; transition: box-shadow .4s; }
+.cc-half.flash { animation: ccflash 1.2s ease-out; }
+@keyframes ccflash { 0% { box-shadow: 0 0 2.5vh #fff, inset 0 0 2vh var(--cyan); } 100% { } }
+.cc-row1 { display: flex; align-items: center; gap: .4vw; height: 1.7vh; }
+.cc-name { font: 700 1.25vh var(--font-display); letter-spacing: .12em; color: var(--cyan); width: 4.4vw; overflow: visible; }
+.cc-n { font: 900 1.55vh var(--font-display); min-width: 1.9vw; text-align: center; }
+.cc-n.DEM { color: var(--dem); text-shadow: 0 0 .8vh var(--dem-glow); } .cc-n.GOP { color: var(--gop); text-shadow: 0 0 .8vh var(--gop-glow); }
+.cc-n i { font-style: normal; display: inline-block; } .cc-n i.flash { animation: numflash 1s ease-out; }
+@keyframes numflash { 0% { transform: scale(1.5); color: #fff; } 100% { transform: scale(1); } }
+.cc-bar { position: relative; flex: 1; height: 1.1vh; display: flex; background: repeating-linear-gradient(135deg, rgba(169,155,214,.35) 0 .3vh, rgba(30,15,70,.9) .3vh .6vh); border: 1px solid rgba(255,255,255,.2); }
+.cc-bar .d { background: var(--dem); box-shadow: 0 0 .8vh var(--dem-glow); transition: width 1s; }
+.cc-bar .g { background: var(--gop); box-shadow: 0 0 .8vh var(--gop-glow); transition: width 1s; margin-left: auto; position: absolute; right: 0; top: 0; bottom: 0; }
+.cc-bar .u { display: none; }
+.cc-bar .tw { position: absolute; top: -.35vh; bottom: -.35vh; width: 2px; background: var(--yellow); box-shadow: 0 0 .6vh var(--yellow); }
+.cc-bar .tw em { position: absolute; top: -1.15vh; left: 50%; transform: translateX(-50%); font: normal .85vh var(--font-mono); color: var(--yellow); display: none; }
+.cc-called { font: 1.05vh var(--font-mono); color: var(--muted); white-space: nowrap; }
+.cc-odds { font: 700 1.55vh var(--font-ui); color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.7vh; }
+.cc-odds b { font-family: var(--font-display); font-weight: 900; letter-spacing: .02em; } .cc-odds b.DEM, .bg-cand small.DEM { color: var(--dem); text-shadow: 0 0 .8vh var(--dem-glow); } .cc-odds b.GOP, .bg-cand small.GOP { color: var(--gop); text-shadow: 0 0 .8vh var(--gop-glow); }
+.cc-src { font: 1.0vh var(--font-mono); color: var(--muted); white-space: nowrap; overflow: hidden; line-height: 1.2vh; }
+.dim { color: var(--muted); }
+
+.bg-board { position: fixed; left: .8vw; top: 8vh; width: 24.2vw; height: 71vh; background: linear-gradient(180deg, #0e0628, #08031c); border: 1px solid var(--cyan); border-bottom-color: var(--magenta);
+  box-shadow: 0 0 2vh rgba(0,240,255,.35), inset 0 0 2vh rgba(138,43,226,.3); padding: 1vh .8vw; display: flex; flex-direction: column; opacity: 0; transform: translateX(-2vw); transition: opacity .5s, transform .5s; visibility: hidden; }
+.bg-board.on { opacity: 1; transform: none; visibility: visible; }
+.bg-head { display: flex; flex-direction: column; border-bottom: 1px solid rgba(0,240,255,.4); padding-bottom: .6vh; margin-bottom: .8vh; }
+.bg-head b { font: 900 2.2vh var(--font-display); letter-spacing: .14em; color: var(--magenta); text-shadow: 0 0 1vh var(--magenta); }
+.bg-head span { font: 1.15vh var(--font-mono); color: var(--cyan); letter-spacing: .08em; }
+.bg-feat { perspective: 120vh; height: 33vh; flex: none; }
+.bg-flip { transform-origin: 50% 0; height: 100%; }
+.bg-flip.in { animation: bgflip .6s cubic-bezier(.2,.8,.2,1); }
+@keyframes bgflip { 0% { transform: rotateX(-75deg); opacity: 0; } 100% { transform: none; opacity: 1; } }
+.bg-title { font: 900 2.5vh var(--font-display); color: #fff; letter-spacing: .04em; display: flex; align-items: center; gap: .6vw; }
+.bg-badge { font: 700 1.2vh var(--font-display); padding: .2vh .5vw; border: 1px solid; } .bg-badge.flip { color: #fff; background: var(--breaking); border-color: #fff; animation: bpulse 1s infinite; } .bg-badge.call { color: var(--yellow); border-color: var(--yellow); }
+@keyframes bpulse { 50% { box-shadow: 0 0 1.5vh var(--breaking); } }
+.bg-rating { font: 700 1.5vh var(--font-display); color: var(--yellow); margin: .4vh 0; } .bg-rating span { font-family: var(--font-mono); color: var(--muted); font-weight: 400; }
+.bg-rating.r-tossup { color: var(--amber); }
+.bg-why { font: 600 1.55vh/1.9vh var(--font-ui); color: var(--text); height: 5.8vh; overflow: hidden; margin-bottom: .6vh; }
+.bg-cand { margin-bottom: .8vh; border-left: 3px solid var(--pc); padding-left: .5vw; }
+.bg-cand .nm { font: 700 1.9vh var(--font-ui); text-transform: uppercase; } .bg-cand .nm small { font: 700 1.2vh var(--font-display); }
+.bg-cand .vt { font: 1.5vh var(--font-mono); color: var(--muted); } .bg-cand .vt b { font: 700 2.1vh var(--font-display); color: var(--text); }
+.bg-cand .sb { height: .7vh; background: rgba(255,255,255,.1); margin: .2vh 0; } .bg-cand .sb i { display: block; height: 100%; background: var(--pc); box-shadow: 0 0 .8vh var(--pc); transition: width 1s; }
+.bg-cand .ob { font: 1.2vh var(--font-ui); color: var(--muted); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .bg-cand .ob b { color: var(--cyan); }
+.bg-cand.win .nm { color: var(--yellow); }
+.bg-list { flex: 1; min-height: 0; overflow: hidden; border-top: 1px solid rgba(0,240,255,.4); padding-top: .5vh; display: flex; flex-direction: column; gap: .2vh; }
+.bg-li { display: grid; grid-template-columns: 1fr 5.5vw 2.8vw; gap: .4vw; font: 600 1.35vh var(--font-ui); padding: .2vh .4vw; border-left: 3px solid transparent; line-height: 1.8vh; align-items: center; white-space: nowrap; overflow: hidden; }
+.bg-li .t { font-family: var(--font-display); font-size: 1.15vh; overflow: hidden; text-overflow: ellipsis; } .bg-li .o { font-family: var(--font-mono); color: var(--cyan); text-align: right; } .bg-li .l { overflow: hidden; text-overflow: ellipsis; }
+.bg-li.cur { background: rgba(0,240,255,.16); border-left-color: var(--magenta); box-shadow: inset 0 0 1vh rgba(255,43,214,.25); }
+.bg-li.done { opacity: .6; } .bg-li.flash { animation: lif 1s infinite; } @keyframes lif { 50% { background: rgba(255,31,75,.55); } }
+/* control odds now live in the right-column CONTROL OF CONGRESS panel; free the 3D window */
+.cc-hud { display: none !important; }
+/* no truncation anywhere (user rule): wrap instead of ellipsis */
+.cc-odds, .bg-cand .ob, .bg-li .t { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; }

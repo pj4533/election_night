@@ -1,0 +1,12 @@
+{
+  "buildCommand": "node scripts/build-static.mjs",
+  "outputDirectory": "dist",
+  "framework": null,
+  "functions": {
+    "api/index.mjs": { "maxDuration": 300, "includeFiles": "{server/**,data/kalshi-races.json,data/hometown-baseline.json}" }
+  },
+  "rewrites": [
+    { "source": "/events", "destination": "/api/index?p=events" },
+    { "source": "/api/:path*", "destination": "/api/index?p=api/:path*" }
+  ]
+}

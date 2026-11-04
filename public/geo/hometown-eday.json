@@ -1,0 +1,89 @@
+{
+ "generatedAt": "2026-11-04T02:28:30.690Z",
+ "eds": {
+  "Pine Plains ED 1": {
+   "2024": {
+    "contest": "President of the United States of America",
+    "edayDem": 41.2,
+    "otherDem": 62.9,
+    "eday": {
+     "DEM": 337,
+     "GOP": 480
+    },
+    "other": {
+     "DEM": 269,
+     "GOP": 159
+    }
+   },
+   "2025": {
+    "contest": "Comptroller",
+    "edayDem": 46,
+    "otherDem": 73.8,
+    "eday": {
+     "DEM": 267,
+     "GOP": 314
+    },
+    "other": {
+     "DEM": 118,
+     "GOP": 42
+    }
+   }
+  },
+  "Stanford ED 1": {
+   "2024": {
+    "contest": "President of the United States of America",
+    "edayDem": 38.1,
+    "otherDem": 66.9,
+    "eday": {
+     "DEM": 179,
+     "GOP": 291
+    },
+    "other": {
+     "DEM": 359,
+     "GOP": 178
+    }
+   },
+   "2025": {
+    "contest": "Comptroller",
+    "edayDem": 45.3,
+    "otherDem": 74,
+    "eday": {
+     "DEM": 169,
+     "GOP": 204
+    },
+    "other": {
+     "DEM": 188,
+     "GOP": 66
+    }
+   }
+  },
+  "Stanford ED 2": {
+   "2024": {
+    "contest": "President of the United States of America",
+    "edayDem": 39.8,
+    "otherDem": 57.8,
+    "eday": {
+     "DEM": 191,
+     "GOP": 289
+    },
+    "other": {
+     "DEM": 292,
+     "GOP": 213
+    }
+   },
+   "2025": {
+    "contest": "Comptroller",
+    "edayDem": 38.1,
+    "otherDem": 65.8,
+    "eday": {
+     "DEM": 152,
+     "GOP": 247
+    },
+    "other": {
+     "DEM": 146,
+     "GOP": 76
+    }
+   }
+  }
+ }
+}

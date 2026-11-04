@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Election Night 2026 // Live</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" />
+  <link rel="stylesheet" href="/css/theme.css" />
+  <link rel="stylesheet" href="/css/scene.css" />
+  <link rel="stylesheet" href="/css/overlay.css" />
+  <link rel="stylesheet" href="/css/chyron.css" />
+  <link rel="stylesheet" href="/css/alerts.css" />
+  <link rel="stylesheet" href="/css/battleground.css" />
+  <link rel="stylesheet" href="/css/senate.css" />
+  <link rel="stylesheet" href="/css/wave.css" />
+  <link rel="stylesheet" href="/css/fun.css" />
+  <link rel="stylesheet" href="/css/ahead.css" />
+  <link rel="stylesheet" href="/css/history.css" />
+  <link rel="stylesheet" href="/css/insights.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/build/three.module.js",
+      "three/addons/": "/vendor/three/examples/jsm/",
+      "topojson-client": "/vendor/topojson-client/src/index.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="stage"></canvas>
+  <div id="scanlines"></div>
+  <div id="overlay"></div>
+  <div id="battle"></div>
+  <div id="senate" style="position:fixed;inset:0;z-index:16;pointer-events:none"></div>
+  <div id="wave" style="position:fixed;inset:0;z-index:16;pointer-events:none"></div>
+  <div id="fun" style="position:fixed;inset:0;z-index:16;pointer-events:none"></div>
+  <div id="ahead" style="position:fixed;inset:0;z-index:16;pointer-events:none"></div>
+  <div id="history"></div>
+  <div id="insights"></div>
+  <div id="chyron"></div>
+  <div id="alerts"></div>
+  <div id="conn" class="conn">CONNECTING…</div>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

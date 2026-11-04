@@ -1,0 +1,160 @@
+{
+  "key": "enr-vendors",
+  "sources": [
+    {
+      "name": "Clarity Elections ENR (Civix/Scytl/SOE) - county/state hosted",
+      "url": "https://results.enr.clarityelections.com/{ST}/{County}/{electionID}/ (json/en/summary.json, reports/detailxml.zip, Web02/en/summary.html)",
+      "cost": "Free",
+      "latency": "Jurisdiction-controlled upload cadence; typically minutes to tens of minutes on election night (not verified live; no official doc)",
+      "granularity": "County or state; precinct via detailxml.zip in most but not all jurisdictions",
+      "verified_live": "PARTIAL. Root results.enr.clarityelections.com returns 200 (gzip HTML, 368 bytes). /NY/Dutchess/ = 404, /NY/Dutchess/current_ver.txt = 404 (Dutchess is NOT on Clarity). /GA/, /NC/, /NY/ return 403 (bot filter/directory listing blocked). I did not find a live election ID to confirm JSON, so JSON/XML paths are UNVERIFIED against a live site today.",
+      "notes": "Format: JSON summary (json/en/summary.json; Firecrawl sample suggests json/details.json on some versions), zipped detail XML (also CSV/XLS in the zip). Auth: none, but 403s on directory roots. Undocumented/unofficial: no published schema, per third-party cgorski.github.io page and the Firecrawl provider page. electionID is numeric and unpredictable; no central index, so discovery means crawling county BOE sites. Old results get removed. current_ver.txt pattern (read it for the newest version number, then fetch /{id}/{ver}/...) is claimed by Firecrawl only; I did not confirm it. Parsing libs: python 'clarify' (ghing/clarify), 'elex-clarity'. About 1,000+ jurisdictions in about 30 states per third-party estimate.",
+      "official": "No (undocumented, widely scraped)",
+      "auth": "None"
+    },
+    {
+      "name": "North Carolina State Board of Elections - ENRS bulk files on S3",
+      "url": "https://s3.amazonaws.com/dl.ncsbe.gov/?prefix=ENRS/2026_11_03/ ; viewer https://er.ncsbe.gov/",
+      "cost": "Free",
+      "latency": "Files are refreshed in place during the night (NC claims frequent refreshes; exact interval not verified). results_pct_20261103.zip showed LastModified 2026-10-05 at my probe (about 7:20pm ET, before NC polls closed at 7:30pm), so it is still a placeholder and I could not observe a live update.",
+      "granularity": "Precinct (results_pct zip = precinct-level results for all contests, statewide) plus county-level absentee/voter_stats files",
+      "verified_live": "YES. The S3 bucket listing returns 200 XML. The ENRS/2026_11_03/ folder exists and contains absentee_*.zip/csv (updated 2026-11-03 09:20-10:36 UTC), polling_place_20261103.csv, provisional_20261103.txt, voter_stats_20261103.zip, results_pct_20261103.zip. Layout docs are at ENRS/layout_*.txt and ENRS/ReadMe_PUBLIC_DATA.txt.",
+      "notes": "Plain HTTP GET, S3 object listing, no key. Poll the object's ETag or Last-Modified with a HEAD request. Folder pattern is ENRS/YYYY_MM_DD/. The er.ncsbe.gov viewer links to the same downloads. Best-documented official statewide bulk feed I found. Official.",
+      "official": "Yes (official, but not a versioned API)",
+      "auth": "None"
+    },
+    {
+      "name": "Georgia SOS results (results.sos.ga.gov, Angular SPA)",
+      "url": "https://results.sos.ga.gov/results/public/Georgia/elections/{ElectionId} ; bulk JSON https://results.sos.ga.gov/cdn/results/Georgia/export-{ElectionId}.json",
+      "cost": "Free",
+      "latency": "Public file has Cache-Control public, max-age=60, so the CDN caches for 60 seconds at most; the underlying publish cadence is not verified",
+      "granularity": "Statewide, county, and precinct-level in the export JSON (32 MB for 2024)",
+      "verified_live": "PARTIAL. SPA page /elections/2026NovemberGeneral = 200 HTML. The 2024 export https://results.sos.ga.gov/cdn/results/Georgia/export-2024NovGen.json = 200, 33,718,327 bytes, last-modified 2025-01-30, max-age=60. My guessed 2026 IDs (2026NovGen, 2026General, 2026NovemberGeneral, 2026JuneGeneralPrimary) all returned 404, so I have NOT found the 2026 election ID. Find it from the SPA's network requests (XHR).",
+      "notes": "Format JSON. Pattern is a CDN export-{ID}.json (the 2024 ID was 2024NovGen). This is an undocumented feed behind the official site. Georgia moved off Clarity to this newer platform (the SPA-style ENR). Browser devtools or Playwright on the SPA is the quickest way to get the exact 2026 ID.",
+      "official": "Undocumented but official-hosted",
+      "auth": "None"
+    },
+    {
+      "name": "Dutchess County NY Board of Elections",
+      "url": "https://elections.dutchessny.gov/election-results/",
+      "cost": "Free",
+      "latency": "Slow and manual. Local press and the BOE site itself say results post slowly through the evening and next day, with absentees added later. Pages show a reporting timestamp and the number of election districts reported.",
+      "granularity": "County; by-contest and by-district/ED tables (PDF), the 'Contest Overview Data' pages",
+      "verified_live": "PARTIAL. The site returns 200 (WordPress, 144 KB). The Results archive links only PDFs plus a few older CSV/XLS spreadsheets (for example GE13-Official-Results-Spreadsheet.csv, GE14 xlsx) and certifications. 2025 and 2026 primary items found: GE25-Official-Summary-Results.pdf, GE25-Detailed-Results-by-Contest-Table.pdf, 2026-Primary-Election-Certification-7-10.pdf, Detailed-Results-by-Contest-Table-7-10.pdf. I found NO 2026 general results page yet and NO API, Clarity, Enhanced Voting, or ElectionStats links. Earlier 'unofficial results' pages exist as HTML (for example /special-election-federal-primary-unofficial-results/).",
+      "notes": "No API found. Not on Clarity (404 at /NY/Dutchess/). Phone 845-486-2473, 112 Delafield St, Poughkeepsie. Vendor not identified (search found nothing). Realistic approach: scrape the unofficial-results HTML page for the 2026 general on election night (an HTML page, so parsing is feasible, but I haven't seen the 2026 page). Ask the BOE whether they can publish CSV. Certified results come about 2-3 weeks later.",
+      "official": "Yes (official site, human-oriented pages and PDFs)",
+      "auth": "None"
+    },
+    {
+      "name": "New York State BOE Election Night Reporting",
+      "url": "https://nyenr.elections.ny.gov/ (also results.elections.ny.gov)",
+      "cost": "Free",
+      "latency": "Polls close 9pm ET; the page itself says results may take time to appear. Update cadence not verified.",
+      "granularity": "Statewide/county; the state-level site aggregates county-submitted unofficial results",
+      "verified_live": "NO. Both nyenr.elections.ny.gov and results.elections.ny.gov returned 403 to curl with a Cloudflare challenge (cf-mitigated: challenge). A real browser (Playwright or Chrome) would probably pass; I did not try it.",
+      "notes": "No evidence of a documented API. If the SPA calls JSON, you could find it with browser devtools; unverified. NYC BOE publishes separately at enr.boenyc.gov (returned 200 text/html; ranked-choice reports at enr.boenyc.gov/rcv/...).",
+      "official": "Yes",
+      "auth": "None (Cloudflare bot challenge on curl)"
+    },
+    {
+      "name": "Florida Division of Elections",
+      "url": "https://results.elections.myflorida.com/ ; https://floridaelectionwatch.gov/",
+      "cost": "Free",
+      "latency": "Not verified; Florida counties report to the state on election night, historically within minutes",
+      "granularity": "County and statewide (precinct downloads historically available as files from the results site)",
+      "verified_live": "PARTIAL. results.elections.myflorida.com = 200 (small legacy HTML). floridaelectionwatch.gov = 200 (26 KB), but I found no download/JSON links in its HTML via grep. No file endpoint tested.",
+      "notes": "Florida has had a downloadable results-file section historically; I could not confirm the current 2026 file URLs. UNVERIFIED beyond reachability.",
+      "official": "Yes",
+      "auth": "None"
+    },
+    {
+      "name": "California SOS results API / JSON",
+      "url": "https://electionresults.sos.ca.gov/ ; API doc https://cms.cdn.sos.ca.gov/media/3-api-documentation-v20.pdf",
+      "cost": "Free",
+      "latency": "Not verified",
+      "granularity": "Statewide and county (counties via the SOS feed)",
+      "verified_live": "PARTIAL. electionresults.sos.ca.gov = 200 (212 bytes, JS shell). API documentation PDF found by search; no live call made. CA is not on the ballot for a big statewide night in the same way, but 2026 midterms include CA.",
+      "notes": "CA SOS documents a JSON API (you submit a list of contests and receive JSON). This is the only statewide official documented JSON API I found. UNVERIFIED live. Los Angeles County: lavote.gov offers election results file downloads (JSON since Feb 2021 per search snippet).",
+      "official": "Yes (documented)",
+      "auth": "None stated"
+    },
+    {
+      "name": "Washington SOS results export",
+      "url": "https://results.vote.wa.gov/results/{YYYYMMDD}/export.html (CSV/XML)",
+      "cost": "Free",
+      "latency": "Not verified",
+      "granularity": "Statewide, county",
+      "verified_live": "NO for 2026. /results/current/export.html = 404; guessed CSV path = 404. Older export pages (2012, 2018, 2020, 2021) exist per search results, so the pattern is real but I did not locate the Nov 3 2026 page.",
+      "notes": "Documented CSV/XML export pages per election date. Likely at results.vote.wa.gov/results/20261103/export.html (not tested).",
+      "official": "Yes",
+      "auth": "None"
+    },
+    {
+      "name": "Pennsylvania Dept of State election returns",
+      "url": "https://www.electionreturns.pa.gov/ ; https://enr.elections.pa.gov/",
+      "cost": "Free",
+      "latency": "Not verified",
+      "granularity": "County; state also publishes precinct files after the election",
+      "verified_live": "NO. electionreturns.pa.gov returned an Incapsula/Imperva bot challenge page (200 but a 1 KB challenge); enr.elections.pa.gov did not connect (000). Search found no documented PA API or CSV.",
+      "notes": "PA likely requires a real browser. UNVERIFIED. Use county-level scrapers or AP-style aggregators instead.",
+      "official": "Yes",
+      "auth": "None (bot challenge)"
+    },
+    {
+      "name": "Other state ENR sites probed (TX, AZ, MO, IA, OH, MI)",
+      "url": "results.texas-election.com ; results.arizona.vote ; enr.sos.mo.gov ; sos.iowa.gov ; results.ohiosos.gov ; mielections.us/election/results/",
+      "cost": "Free",
+      "latency": "Unknown",
+      "granularity": "State/county",
+      "verified_live": "NO. TX, AZ, MO, IA returned 403 (Cloudflare-style challenge) to curl; OH and MI did not connect (000). So I could not confirm any JSON/CSV feed for Georgia-adjacent big states. Search turned up no documentation for these states' feeds.",
+      "notes": "All of these probably need a headless browser to inspect network calls (Playwright). Results here are 'blocked to curl', not 'no API'. UNVERIFIED.",
+      "official": "Yes",
+      "auth": "Bot challenge"
+    },
+    {
+      "name": "Virginia Dept of Elections CSV",
+      "url": "https://apps.elections.virginia.gov/SBE_CSV/ELECTIONS/",
+      "cost": "Free",
+      "latency": "Not verified",
+      "granularity": "Statewide, locality; historically CSV files",
+      "verified_live": "PARTIAL. Returned 200 HTML (Akamai wrapper, contents not parsed). No file listing confirmed. Virginia is not on a major statewide ballot this year, so low value.",
+      "notes": "UNVERIFIED.",
+      "official": "Yes",
+      "auth": "None"
+    },
+    {
+      "name": "Enhanced Voting (Florida vendor, replaces ElectionReporting.com)",
+      "url": "Per-county hosted pages (for example Midland County MI per GovTech)",
+      "cost": "Free for viewers",
+      "latency": "Not verified",
+      "granularity": "County/contest; Excel download offered on the Midland MI page",
+      "verified_live": "NO. I found no documented JSON endpoint and did not locate a live instance to probe.",
+      "notes": "Enhanced Voting reportedly moving ElectionReporting.com archives into its platform (2025). Export formats like Excel exist. Treat as UNVERIFIED for JSON.",
+      "official": "Vendor-hosted official sites",
+      "auth": "Unknown"
+    },
+    {
+      "name": "Other ENR vendors: KnowInk, Hart, ElectionStats, VR Systems, Tenex, Arcadia",
+      "url": "none probed",
+      "cost": "n/a",
+      "latency": "n/a",
+      "granularity": "n/a",
+      "verified_live": "NO. I did not research these individually. Search results contained nothing documented for any of them, and I did not probe any instance. I am explicitly not claiming anything about their feeds.",
+      "notes": "Note on slice coverage: Hart, Tenex, Arcadia, VR Systems, KnowInk and ElectionStats were NOT covered with evidence. ElectionStats is the platform behind sites such as electionstats.state.* in states like MA, NH, VT, CO historic archives (this is background knowledge, unverified here).",
+      "official": "n/a",
+      "auth": "n/a"
+    },
+    {
+      "name": "Third-party helpers for Clarity and general scraping",
+      "url": "https://github.com/ghing/clarify ; https://pypi.org/project/elex-clarity ; https://github.com/biglocalnews/local-election-results-etl ; https://pages.nist.gov/ElectionResultsReporting/index.html",
+      "cost": "Free, open source",
+      "latency": "Depends on source",
+      "granularity": "Whatever the source site exposes",
+      "verified_live": "Pages found via search; not run",
+      "notes": "clarify parses Clarity detail XML; local-election-results-etl normalizes local official results; NIST publishes the Election Results Reporting common data format (JSON/XML), which a few jurisdictions use. Also the OpenElections and MIT MEDSL archives (CSV, historical/certified only, not live).",
+      "official": "No",
+      "auth": "None"
+    }
+  ],
+  "summary": "Bottom line from the vendor/state-feed slice. No vendor offers a documented, supported real-time API. What exists is a mix of undocumented JSON/XML behind official sites and bulk file drops.\n\nConfirmed live by curl:\n- North Carolina's S3 bucket (dl.ncsbe.gov/ENRS/2026_11_03/) responds and is the cleanest official statewide bulk feed. It is open, unauthenticated, precinct-level, with a results_pct zip. The results zip still showed a 2026-10-05 timestamp at my probe, about 7:20pm ET before NC polls closed, so I have not seen it update live.\n- Georgia's CDN export pattern works (the 2024 export is 200, 32 MB, precinct-level JSON, max-age=60). I could not find the 2026 election ID; it needs the SPA's network calls.\n- Clarity's root responds, but I could not find a live instance to confirm the JSON or XML paths. Clarity URLs need a numeric election ID that is unpredictable and has no central index. Everything I say about /json/en/summary.json, reports/detailxml.zip and current_ver.txt comes from third-party pages (cgorski.github.io, Firecrawl), not from my own probing.\n\nDutchess County: the BOE site (elections.dutchessny.gov) is a WordPress site with PDF/HTML results and a few old CSV/XLS files. It is NOT on Clarity (404). I found no API, and the board says results post slowly through the night, with absentees later. Plan on scraping its unofficial-results HTML page once the 2026 general page appears (I did not see it yet), or ask the BOE for CSV. I did not identify its vendor.\n\nBlocked to curl (403 or bot challenge, so inconclusive, NOT proof of no API): NY State ENR (Cloudflare), PA (Imperva/Incapsula), TX, AZ, MO, IA. OH and MI did not connect. A headless browser (Playwright) would likely get through and let you read the XHR calls.\n\nNot covered or not verified: KnowInk, Hart, ElectionStats, VR Systems, Tenex, Arcadia and Enhanced Voting were not researched with evidence. California has a documented JSON API (PDF found, not called). Washington has per-date CSV/XML export pages, but I could not find the 2026 one (404 on the guesses). Florida has pages reachable but no file endpoints confirmed.\n\nPractical recommendation from this slice: a dashboard built on NC's S3 files, Georgia's CDN JSON, CA's JSON API, and Playwright-assisted discovery for the big blocked states is feasible. For anything truly real-time or national, an AP-type aggregator is probably the real option; that was outside my slice. County-level coverage for Dutchess will be slow and manual regardless of feed choice."
+}

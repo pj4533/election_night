@@ -1,0 +1,40 @@
+#history { position: fixed; inset: 0; z-index: 16; pointer-events: none; }
+.hist-board { position: fixed; left: .8vw; top: 8vh; width: 24.2vw; height: 71vh; background: linear-gradient(180deg, #0e0628, #08031c); border: 1px solid var(--cyan); border-bottom-color: var(--magenta);
+  box-shadow: 0 0 2vh rgba(0,240,255,.35), inset 0 0 2vh rgba(138,43,226,.3); padding: .8vh .7vw; display: flex; flex-direction: column; gap: .3vw; overflow: hidden;
+  opacity: 0; transform: translateX(-2vw); transition: opacity .5s, transform .5s; visibility: hidden; }
+.hist-board.on { opacity: 1; transform: none; visibility: visible; }
+.hist-board > * { flex: 0 0 auto; }
+.hist-head { display: flex; flex-direction: column; border-bottom: 1px solid rgba(0,240,255,.4); padding-bottom: .4vh; }
+.hist-head b { font: 900 1.04vw var(--font-display); letter-spacing: .1em; color: var(--magenta); text-shadow: 0 0 1vh var(--magenta); }
+.hist-head span { font: 0.7vw var(--font-mono); color: var(--cyan); }
+.hist-note { font: 600 0.7vw var(--font-ui); color: var(--yellow); line-height: 1.15; }
+.hist-note .st-full { color: #7dffb0; } .hist-note .st-night { color: var(--yellow); } .hist-note .st-not { color: #ff8a9c; }
+.hist-legend { font: 0.7vw var(--font-mono); color: var(--text); display: flex; gap: .3vw; align-items: center; flex-wrap: nowrap; white-space: nowrap; }
+.hist-legend i { display: inline-block; width: .6vw; height: .6vw; margin-left: .3vw; }
+.hist-card { border: 1px solid rgba(0,240,255,.35); background: rgba(20,8,60,.55); padding: .3vw .5vw; display: flex; flex-direction: column; gap: .1vw; }
+.hist-ed { display: flex; justify-content: space-between; align-items: baseline; }
+.hist-ed b { font: 900 0.78vw var(--font-display); color: var(--cyan); letter-spacing: .08em; }
+.hist-ed span { font: 700 0.72vw var(--font-ui); color: var(--text); } .hist-ed small { color: var(--yellow); }
+.hist-ed .DEM { color: var(--dem); } .hist-ed .GOP { color: var(--gop); }
+.hb-title { font: 700 0.7vw var(--font-display); color: var(--magenta); letter-spacing: .08em; margin-top: .2vh; }
+.hb-title small { font: 0.7vw var(--font-mono); color: var(--yellow); letter-spacing: 0; }
+.hb-row { display: grid; grid-template-columns: 2.1vw 1fr 6vw; align-items: center; gap: .3vw; height: .95vw; }
+.hb-y { font: 0.7vw var(--font-mono); color: var(--text); } .hb-row.now .hb-y, .hb-row.now .hb-n { color: var(--yellow); font-weight: 700; }
+.hb-n { font: 0.7vw var(--font-mono); color: var(--text); text-align: right; white-space: nowrap; } .hb-n b { color: var(--yellow); }
+.hb-bar { height: .6vw; display: flex; background: rgba(255,255,255,.07); } .hb-bar i { display: block; height: 100%; transition: width .8s; }
+.hb-row.now .hb-bar { box-shadow: 0 0 .8vh var(--yellow); }
+.hb-cap { font: 600 0.7vw var(--font-ui); color: var(--text); line-height: 1.15; }
+.hb-cap b { font: 900 0.77vw var(--font-display); color: var(--yellow); } .hb-cap span { color: var(--cyan); font-family: var(--font-mono); font-size: .7vw; }
+.up { color: var(--dem); } .dn { color: var(--gop); }
+.hb-cap.deltas .up, .hb-cap.deltas .dn { font-weight: 700; margin-right: .3vw; text-shadow: 0 0 .6vh currentColor; }
+.dp { position: relative; height: 1.9vw; margin: 0 .6vw; }
+.dp-axis { position: absolute; left: 0; right: 0; top: 1.2vw; height: 2px; background: rgba(255,255,255,.5); }
+.dp-50 { position: absolute; top: .9vw; height: .6vw; width: 1px; background: var(--yellow); }
+.dp-arrow { position: absolute; top: 1.13vw; height: .2vw; background: linear-gradient(90deg, var(--yellow), var(--dem)); opacity: .8; }
+.dp-dot { position: absolute; top: 0; height: 100%; width: 0; }
+.dp-dot i { position: absolute; left: -.25vw; top: .95vw; width: .5vw; height: .5vw; transform: rotate(45deg); background: var(--cyan); }
+.dp-dot em { position: absolute; left: 0; transform: translateX(-50%); font: normal 0.7vw var(--font-mono); color: var(--cyan); white-space: nowrap; top: 0; }
+.dp-dot.lo em { top: -.1vw; }
+.dp-dot.now i { width: .8vw; height: .8vw; left: -.4vw; top: .8vw; border-radius: 50%; transform: none; background: var(--dem); box-shadow: 0 0 1vh var(--dem); border: 2px solid #fff; z-index: 2; }
+.dp-dot.now em { color: var(--yellow); font-weight: 700; top: -.1vw; z-index: 2; }
+.dp-scale { display: flex; justify-content: space-between; font: 0.7vw var(--font-mono); color: var(--text); margin: 0 .6vw; }

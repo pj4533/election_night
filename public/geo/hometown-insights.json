@@ -1,0 +1,520 @@
+{
+ "generatedAt": "2026-11-04T02:43:38.380Z",
+ "note": "early = Early Voting + Absentee/EMB (+Affidavit) in each contest. 2026 = Governor contest, unofficial, as of generation. 2025 turnout = Statewide Proposal; 2025 lean = Comptroller; 2024 = President; 2023 = County Executive (no method split). ED names matched by name across years.",
+ "county": {
+  "eds": 158,
+  "ev26": 48962,
+  "ev25": 22581,
+  "ev24": 83977,
+  "tot24": 152617,
+  "tot25": 69750,
+  "tot23": 46475,
+  "eday26": 4539,
+  "evDem26": 68.9,
+  "evDem24": 59.3,
+  "evDem25": 68.5,
+  "edayDem24": 46.7,
+  "edayDem25": 50.1,
+  "dem24": 53.7,
+  "trumpEdsDemEarly": 62,
+  "trumpEds": 64,
+  "edsDemGainEarly": 155,
+  "edsMatched24": 158,
+  "evSwingVs24": 9.6
+ },
+ "home": {
+  "Pine Plains ED 1": {
+   "ed": "Pine Plains ED 1",
+   "ev26": 289,
+   "eday26": 0,
+   "ev25": 178,
+   "ev24": 494,
+   "tot24": 1389,
+   "tot25": 802,
+   "tot23": 820,
+   "evDem26": 70,
+   "evDem24": 62.9,
+   "evDem25": 73.8,
+   "dem24": 48.7,
+   "dem25": 52,
+   "edayDem24": 41.2,
+   "evGrowth25": 62,
+   "evShare24": 21,
+   "evSwing24": 7.1,
+   "rankEvGrowth": {
+    "rank": 139,
+    "of": 154
+   },
+   "rankEvSwing": {
+    "rank": 101,
+    "of": 158
+   },
+   "rankEvShare": {
+    "rank": 138,
+    "of": 158
+   },
+   "rankEv": {
+    "rank": 95,
+    "of": 158
+   },
+   "methods24": {
+    "Election Day": 895,
+    "Early Voting": 319,
+    "ABS/AFF/EVBM": 175
+   },
+   "methods25": {
+    "Abs/Aff": 43,
+    "Election Day": 624,
+    "Early Voting": 135
+   },
+   "methods26": {
+    "Early Voting": 233,
+    "Absentee/EMB": 56,
+    "Election Day": 0,
+    "Affidavit": 0
+   }
+  },
+  "Stanford ED 1": {
+   "ed": "Stanford ED 1",
+   "ev26": 359,
+   "eday26": 0,
+   "ev25": 265,
+   "ev24": 599,
+   "tot24": 1127,
+   "tot25": 669,
+   "tot23": 688,
+   "evDem26": 72.6,
+   "evDem24": 66.9,
+   "evDem25": 74,
+   "dem24": 53.4,
+   "dem25": 56.9,
+   "edayDem24": 38.1,
+   "evGrowth25": 35,
+   "evShare24": 32,
+   "evSwing24": 5.7,
+   "rankEvGrowth": {
+    "rank": 152,
+    "of": 154
+   },
+   "rankEvSwing": {
+    "rank": 118,
+    "of": 158
+   },
+   "rankEvShare": {
+    "rank": 82,
+    "of": 158
+   },
+   "rankEv": {
+    "rank": 59,
+    "of": 158
+   },
+   "methods24": {
+    "Election Day": 528,
+    "Early Voting": 464,
+    "ABS/AFF/EVBM": 135
+   },
+   "methods25": {
+    "Abs/Aff": 32,
+    "Election Day": 404,
+    "Early Voting": 233
+   },
+   "methods26": {
+    "Early Voting": 330,
+    "Absentee/EMB": 29,
+    "Election Day": 0,
+    "Affidavit": 0
+   }
+  },
+  "Stanford ED 2": {
+   "ed": "Stanford ED 2",
+   "ev26": 332,
+   "eday26": 0,
+   "ev25": 239,
+   "ev24": 561,
+   "tot24": 1090,
+   "tot25": 655,
+   "tot23": 641,
+   "evDem26": 67.5,
+   "evDem24": 57.8,
+   "evDem25": 65.8,
+   "dem24": 49,
+   "dem25": 48,
+   "edayDem24": 39.8,
+   "evGrowth25": 39,
+   "evShare24": 30,
+   "evSwing24": 9.7,
+   "rankEvGrowth": {
+    "rank": 150,
+    "of": 154
+   },
+   "rankEvSwing": {
+    "rank": 68,
+    "of": 158
+   },
+   "rankEvShare": {
+    "rank": 99,
+    "of": 158
+   },
+   "rankEv": {
+    "rank": 76,
+    "of": 158
+   },
+   "methods24": {
+    "Election Day": 529,
+    "Early Voting": 432,
+    "ABS/AFF/EVBM": 129
+   },
+   "methods25": {
+    "Early Voting": 213,
+    "Election Day": 416,
+    "Abs/Aff": 26
+   },
+   "methods26": {
+    "Affidavit": 0,
+    "Absentee/EMB": 31,
+    "Election Day": 0,
+    "Early Voting": 301
+   }
+  }
+ },
+ "town": [
+  {
+   "year": 2023,
+   "scope": "pineplains",
+   "contest": "Pine Plains Town Supervisor",
+   "total": 551,
+   "margin": 491,
+   "cands": [
+    {
+     "name": "Brian Walsh",
+     "votes": 521,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-In",
+     "votes": 30,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2025,
+   "scope": "pineplains",
+   "contest": "Pine Plains Town Supervisor",
+   "total": 846,
+   "margin": 8,
+   "cands": [
+    {
+     "name": "Brian Walsh",
+     "votes": 427,
+     "party": "GOP"
+    },
+    {
+     "name": "Kevin Joseph Walsh",
+     "votes": 419,
+     "party": "DEM"
+    },
+    {
+     "name": "Write-in",
+     "votes": 0,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2026,
+   "scope": "pineplains",
+   "contest": "Pine Plains Town Supervisor",
+   "total": 287,
+   "margin": 138,
+   "cands": [
+    {
+     "name": "Trevor Roush",
+     "votes": 212,
+     "party": "DEM"
+    },
+    {
+     "name": "Brian Walsh",
+     "votes": 74,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-in",
+     "votes": 1,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2025,
+   "scope": "pineplains",
+   "contest": "Pine Plains Member of Town Council",
+   "total": 1629,
+   "margin": 43,
+   "cands": [
+    {
+     "name": "Trevor Roush",
+     "votes": 453,
+     "party": "DEM"
+    },
+    {
+     "name": "Murphy Birdsall",
+     "votes": 410,
+     "party": "DEM"
+    },
+    {
+     "name": "David Prentice",
+     "votes": 390,
+     "party": "GOP"
+    },
+    {
+     "name": "Robert Ambrose",
+     "votes": 373,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-in",
+     "votes": 3,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2023,
+   "scope": "pineplains",
+   "contest": "Pine Plains Member of Town Board",
+   "total": 1613,
+   "margin": 82,
+   "cands": [
+    {
+     "name": "Jeanine Sisco",
+     "votes": 479,
+     "party": "DEM"
+    },
+    {
+     "name": "Kevin Walsh",
+     "votes": 397,
+     "party": "DEM"
+    },
+    {
+     "name": "Paul Murphy",
+     "votes": 379,
+     "party": "GOP"
+    },
+    {
+     "name": "James Smith, III",
+     "votes": 357,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-In",
+     "votes": 1,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2023,
+   "scope": "stanford",
+   "contest": "Stanford Town Supervisor",
+   "total": 1333,
+   "margin": 182,
+   "cands": [
+    {
+     "name": "Wendy Burton",
+     "votes": 757,
+     "party": "DEM"
+    },
+    {
+     "name": "Bill Harklerode",
+     "votes": 575,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-In",
+     "votes": 1,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2025,
+   "scope": "stanford",
+   "contest": "Stanford Town Supervisor",
+   "total": 1389,
+   "margin": 231,
+   "cands": [
+    {
+     "name": "Julia Descoteaux",
+     "votes": 810,
+     "party": "DEM"
+    },
+    {
+     "name": "Michael Roche",
+     "votes": 579,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-in",
+     "votes": 0,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2026,
+   "scope": "stanford",
+   "contest": "Stanford Town Supervisor",
+   "total": 538,
+   "margin": 528,
+   "cands": [
+    {
+     "name": "Julia Descoteaux",
+     "votes": 533,
+     "party": "DEM"
+    },
+    {
+     "name": "Write-in",
+     "votes": 5,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2024,
+   "scope": "stanford",
+   "contest": "Town of Stanford Member of Town Board- Unexpired Term",
+   "total": 2118,
+   "margin": 7,
+   "cands": [
+    {
+     "name": "Theodore Eagleson Secor",
+     "votes": 1062,
+     "party": "DEM"
+    },
+    {
+     "name": "Adrienne Zetterberg",
+     "votes": 1055,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-in",
+     "votes": 1,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2025,
+   "scope": "stanford",
+   "contest": "Stanford Member of Town Council",
+   "total": 2727,
+   "margin": 11,
+   "cands": [
+    {
+     "name": "Theodore E. Secor",
+     "votes": 760,
+     "party": "DEM"
+    },
+    {
+     "name": "Charles Cunningham",
+     "votes": 749,
+     "party": "DEM"
+    },
+    {
+     "name": "Frank Marcin",
+     "votes": 624,
+     "party": "GOP"
+    },
+    {
+     "name": "Durga G. Taylor",
+     "votes": 593,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-in",
+     "votes": 1,
+     "party": null
+    }
+   ]
+  },
+  {
+   "year": 2026,
+   "scope": "stanford",
+   "contest": "Stanford Member of Town Council- Unexpired Term",
+   "total": 676,
+   "margin": 280,
+   "cands": [
+    {
+     "name": "Nathan Lavertue",
+     "votes": 478,
+     "party": "DEM"
+    },
+    {
+     "name": "Jack Evans",
+     "votes": 198,
+     "party": "GOP"
+    },
+    {
+     "name": "Write-in",
+     "votes": 0,
+     "party": null
+    }
+   ]
+  }
+ ],
+ "topSwing": [
+  {
+   "ed": "Beekman ED 6",
+   "v": 56.2
+  },
+  {
+   "ed": "C/Poughkeepsie W 3 ED 2",
+   "v": 27.8
+  },
+  {
+   "ed": "Beekman ED 9",
+   "v": 25.4
+  },
+  {
+   "ed": "Beekman ED 7",
+   "v": 24.3
+  },
+  {
+   "ed": "C/Poughkeepsie W 3 ED 3",
+   "v": 24.2
+  }
+ ],
+ "topGrowth": [
+  {
+   "ed": "East Fishkill ED 8",
+   "v": 311,
+   "ev26": 452,
+   "ev25": 110
+  },
+  {
+   "ed": "East Fishkill ED 3",
+   "v": 258,
+   "ev26": 379,
+   "ev25": 106
+  },
+  {
+   "ed": "East Fishkill ED 10",
+   "v": 257,
+   "ev26": 375,
+   "ev25": 105
+  },
+  {
+   "ed": "East Fishkill ED 12",
+   "v": 257,
+   "ev26": 328,
+   "ev25": 92
+  },
+  {
+   "ed": "East Fishkill ED 5",
+   "v": 249,
+   "ev26": 377,
+   "ev25": 108
+  }
+ ]
+}

@@ -1,0 +1,114 @@
+{
+  "key": "context",
+  "summary": "SCOPE: What is on the ballot Nov 3 2026 (election night). TIME: shell clock = Nov 4 00:17 UTC = Nov 3 ~7:17 PM EST (UTC-5). NY polls close 9:00 PM ET, so about 1h40m before close at time of probe. Election is not yet over, and no results were visible in any source checked.\n\nFEDERAL (national, unverified detail):\n- House: all 435 seats. Sources say Democrats are favored to win the House (CFR), so treat as preview only.\n- Senate: 33 seats per one source; another says 35 of 100, which may include specials. Conflict unresolved. Battlegrounds named in coverage: Michigan (open seat, close races), Iowa, Alaska (DOJ lawsuit over \"voter confusion\" claim), Georgia, Texas. Governor races named: California (also others, unverified).\n- No national results found in any search.\n\nNEW YORK STATEWIDE (confirmed from Wikipedia fetch, Ballotpedia/Green Papers snippets):\n- Governor: Kathy Hochul (D, Working Families alliance), LG running mate Adrienne Adams. Bruce Blakeman (R), LG running mate Todd Hood. Conservative line probably Blakeman (not confirmed). Vote Affordable also listed. Ballotpedia snapshot also named Larry Sharpe and Jean Anglade, so the candidate list conflicts across sources. Hochul led Stefanik by 19 in one poll, and a Marist October poll exists. Results at 0% in the Wikipedia snapshot.\n- Attorney General: Letitia James (D, third-term bid), vs Saritha Komatireddy (R, also Conservative line). Source: search snippet, not fetched.\n- Comptroller: Thomas DiNapoli (D, 5th term), vs Joseph Hernandez (R/Conservative) per Politics1 directory. Democratic primary field conflicts (Raj Goyle, Drew Warshaw listed; Ballotpedia not updated after June 23 primary). Treat as unverified.\n\nNY-17 (Lawler, R): general is described as the only true toss-up in NY. Dem nominee Cait Conley won a 5-way June primary; Dutchess County Dem Committee endorsed her. Dutchess County sits in NY-17 and in NY-18 per sources. NY-19 may cover part of Dutchess too (unverified).\n\nNY-18 (Pat Ryan, D, incumbent as of 2024): a DecisionDesk 2026 race page exists, but the fetch returned 404. The search snippet showed 0 votes, pre-election. 2026 opponent NOT verified. The 2024 race was Ryan vs Alison Esposito.\n\nNY-19 (Josh Riley, D, incumbent; Peter Oberacker, R, state senator; Alexander Portelli, R, also named): Ballotpedia lists Riley vs Oberacker/Portelli. The Republican primary was June 23 2026, and the primary result was not verified, so the GOP nominee is unconfirmed. FEC totals listed Riley about $3.96M and Oberacker about $0.79M (aggregator, unverified). Dutchess presence in NY-19 unconfirmed.\n\nDUTCHESS COUNTY LOCAL (from elections.dutchessny.gov, fetched OK):\n- BOE posted: \"General Election 2026 Candidate List\" (Sep 14 2026), \"General Election 2026 Sample Ballots\" (Sep 23 2026), early voting and poll-site pages, absentee/VBM guidance (Sep 17 2026), and a \"General Election 2026 Unofficial Election Results\" link on enhancedvoting.com. The candidate-list PDF was not retrieved, so county race contents are UNVERIFIED.\n- County Executive: last elected 2023 (Sue Serino). GoodParty lists the next CE race as Nov 2 2027, so probably NOT on the 2026 ballot (unverified; inference).\n- County Legislature: flipped to Democratic in Nov 2025. Not on 2026 ballot per the same inference.\n- County Comptroller: 2025 race (Dan Aymar-Blair D/WFP vs Will Truitt R/C). Not 2026 per inference.\n- Likely 2026 Dutchess items: NY State Senate and Assembly seats, federal House, statewide offices, judicial and town races. Assumed from general NY election structure, not verified in this run. Confirm with the BOE candidate list.\n- Precinct-to-district mapping (which congressional district the user lives in) NOT verified. Needs a lookup against the NY districts map or the BOE voter lookup.\n\nPOLLING AND RESULTS TIMING (NY):\n- Polls open 6 AM, close 9 PM ET (Stony Brook civic justice page, Green Papers snippet). Anyone in line at 9 PM may vote.\n- NY counties release unofficial results on election night after close. Early/in-person totals arrive first, absentee/mail counted later. CBS 2025 NYC coverage: close races can take hours or days.\n- Mail ballots: postmark by Nov 3 2026, received by Nov 10 2026 (Stony Brook page; verify with NYSBOE).\n- NYSBOE (elections.ny.gov) returned HTTP 403 to curl (bot block). Browser access not verified.\n- Dutchess BOE: elections.dutchessny.gov returned HTTP 200 to curl. Its results link goes to enhancedvoting.com, which returned HTTP 307 (redirect, not followed). Real-time feed and update cadence NOT verified (other slices should cover).\n\nREACHABILITY: elections.dutchessny.gov=200; enhancedvoting.com=307 redirect; elections.ny.gov=403 (curl); DecisionDesk 2026 NY-18 page=404.\n\nCAVEATS: Secondary sources conflict on candidate lists. Ballotpedia pages were not updated after the June primaries. Several search hits were low quality (peoplespharmacy, medicloud). Pre-election previews only. Official outcome not visible in any source fetched.",
+  "sources": [
+    {
+      "name": "Wikipedia: 2026 New York gubernatorial election",
+      "url": "https://en.wikipedia.org/wiki/2026_New_York_gubernatorial_election",
+      "cost": "free",
+      "latency": "n/a (static page)",
+      "granularity": "statewide",
+      "verified_live": "yes, fetched via WebFetch; showed 0% reporting",
+      "notes": "Hochul/Adams vs Blakeman/Hood; Conservative and Vote Affordable lines unclear."
+    },
+    {
+      "name": "Dutchess County Board of Elections",
+      "url": "https://elections.dutchessny.gov/",
+      "cost": "free",
+      "latency": "n/a",
+      "granularity": "county",
+      "verified_live": "yes, HTTP 200 via curl; content fetched",
+      "notes": "Lists GE26 candidate list (Sep 14 2026), sample ballots (Sep 23), absentee guidance (Sep 17), and an unofficial results link on enhancedvoting.com. Official source for county ballot."
+    },
+    {
+      "name": "enhancedvoting.com (Dutchess results link host)",
+      "url": "https://enhancedvoting.com/",
+      "cost": "unknown",
+      "latency": "unknown",
+      "granularity": "unknown",
+      "verified_live": "HTTP 307 via curl (redirect not followed)",
+      "notes": "Hosts Dutchess unofficial results per BOE page. Live-feed behavior not verified."
+    },
+    {
+      "name": "NYS Board of Elections",
+      "url": "https://www.elections.ny.gov/",
+      "cost": "free",
+      "latency": "unknown",
+      "granularity": "statewide",
+      "verified_live": "HTTP 403 via curl (bot block); not verified in browser",
+      "notes": "Not checked. Official statewide source."
+    },
+    {
+      "name": "DecisionDesk NY-18 2026 general",
+      "url": "https://integration-votes.decisiondeskhq.com/races/2026-11-03/new-york-us-house-18-general-election",
+      "cost": "unknown",
+      "latency": "unknown",
+      "granularity": "district",
+      "verified_live": "HTTP 404 via WebFetch",
+      "notes": "Search snippet showed a 2026 page with 0 votes pre-election; candidate list not retrieved."
+    },
+    {
+      "name": "Ballotpedia: NY-19 2026",
+      "url": "https://ballotpedia.org/New_York%27s_19th_Congressional_District_election,_2026",
+      "cost": "free",
+      "latency": "n/a",
+      "granularity": "district",
+      "verified_live": "search result only, not fetched",
+      "notes": "Lists Riley (D) vs Oberacker/Portelli (R). Primary result not verified."
+    },
+    {
+      "name": "Wikipedia: 2026 New York Attorney General election",
+      "url": "https://en.wikipedia.org/wiki/2026_New_York_Attorney_General_election",
+      "cost": "free",
+      "latency": "n/a",
+      "granularity": "statewide",
+      "verified_live": "search result only, not fetched",
+      "notes": "James (D) vs Komatireddy (R/C)."
+    },
+    {
+      "name": "Ballotpedia: New York Comptroller 2026",
+      "url": "https://ballotpedia.org/New_York_Comptroller_election,_2026",
+      "cost": "free",
+      "latency": "n/a",
+      "granularity": "statewide",
+      "verified_live": "search result only, not fetched",
+      "notes": "DiNapoli (D) vs Hernandez (R). Dem field conflicting."
+    },
+    {
+      "name": "Stony Brook civic justice key dates",
+      "url": "https://www.stonybrook.edu/civicjustice/election/key-dates.html",
+      "cost": "free",
+      "latency": "n/a",
+      "granularity": "statewide",
+      "verified_live": "search result only, not fetched",
+      "notes": "Polls 6 AM to 9 PM; mail ballot postmark Nov 3, receipt by Nov 10 2026."
+    },
+    {
+      "name": "The Green Papers: New York 2026 General",
+      "url": "https://thegreenpapers.com/G26/NY",
+      "cost": "free",
+      "latency": "n/a",
+      "granularity": "statewide",
+      "verified_live": "search result only, not fetched",
+      "notes": "Lists polling hours 6 AM to 9 PM."
+    },
+    {
+      "name": "WAMC / River Journal: NY-17 Dutchess Dem endorsement of Cait Conley",
+      "url": "https://riverjournalonline.com/around-town/politics/dutchess-county-democratic-committee-endorses-cait-conley-for-ny-17/290558/",
+      "cost": "free",
+      "latency": "n/a",
+      "granularity": "district",
+      "verified_live": "search result only, not fetched",
+      "notes": "NY-17 toss-up; Conley (D) vs Lawler (R)."
+    },
+    {
+      "name": "GoodParty: Dutchess County Legislature-Executive Board",
+      "url": "https://goodparty.org/elections/ny/dutchess-county/position/county-legislature-executive-board",
+      "cost": "free",
+      "latency": "n/a",
+      "granularity": "county",
+      "verified_live": "search result only, not fetched",
+      "notes": "Lists next county exec race Nov 2 2027 (filing deadline TBD). Low-quality aggregator."
+    }
+  ]
+}

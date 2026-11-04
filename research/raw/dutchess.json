@@ -1,0 +1,69 @@
+{
+  "key": "dutchess",
+  "sources": [
+    {
+      "name": "Dutchess County BOE - Unofficial Results (Enhanced Voting public results app) - JSON API",
+      "url": "https://app.enhancedvoting.com/results/public/api/elections/dutchess-county-ny/GE2026/data",
+      "cost": "Free, no auth, no key. CORS: access-control-allow-origin: * (browser-side fetch works).",
+      "latency": "CDN header cache-control: public, max-age=60 (s-maxage=60 on the HTML shell). The Angular app re-polls on that cadence. Actual freshness depends on how often the BOE publishes a new version (batches). NOT yet populated as of 19:21 EST Nov 3 (polls still open; NY closes 9pm ET): election.asOf=2026-10-27T13:43:52Z, ballotsCast=0, all voteCounts=0, reportingUnits 0/0. nextUpdateAt=null. Cadence of election-night batches NOT verified - no archived snapshots found.",
+      "granularity": "County-wide totals per contest, plus precinct (election district, ED) level via per-ballot-item breakdown endpoint. 158 precincts/EDs, 69 polling places. Vote totals split by method: Election Day / Early Voting / Absentee-EMB / Affidavit. Precinct reporting status per ED and per group.",
+      "verified_live": "YES for HTTP 200 + JSON schema on GE2026 (pre-election placeholder with 101 ballot items, candidates, party colors, ED list, all zeros). YES for fully populated precinct-level results on prior election GE25 (final, asOf 2025-11-20; 1.26MB per-contest breakdown with 158 EDs x candidate x party-line x vote-method). Live election-night numbers: NOT yet observed.",
+      "notes": "UNDOCUMENTED but it is the first-party JSON backend of the official BOE-linked results page (BOE homepage button 'General Election 2026 Unofficial Election Results' links to https://app.enhancedvoting.com/results/public/dutchess-county-ny/GE2026). Not a published/supported API - may change or be rate-limited; poll politely (>=60s). ENDPOINTS (base https://app.enhancedvoting.com/results/public/api): GET /elections/{county-slug}/{electionId}/data = everything (jurisdiction, election meta, ballotItems[] with summaryResults.ballotOptions[] {name, party, voteCount, groupResults[]}, precincts[], pollingPlaces[], statistics, voterTurnout); GET /elections/{slug}/{id} = election metadata only (4KB; asOf/lastUpdated/publishDate/publishVersionId/isOfficialResults/ballotsCast/precinctsReporting) - cheap change-detection poll; GET /elections/{slug}/{id}/data/ballot-item/{ballotItemId} = single contest with breakdownResults[] per precinct (this is the ED-level data; ~1.2MB each); GET /elections/{slug}/{id}/closeraces; /stats; /turnout; /vr; /localities (these last 4 return empty on Dutchess); GET /jurisdictions/{slug} = jurisdiction info + list of all electionIds. Ballot item IDs come from /data. Fields: isWinner, isOfficialResults flags; party objects have hex colors. RACES ON DUTCHESS GE2026 BALLOT (101 items): Governor/Lt Gov (Hochul/Adams D+WFP vs Blakeman/Hood R+Con+VAP); State Comptroller (DiNapoli vs Hernandez); Attorney General (James vs Komatireddy); US House NY-17 (Cait Conley D vs Mike Lawler R); US House NY-18 (Pat Ryan D vs Jackie Auringer R); State Senate SD39 (Lisa Kaul D vs Robert Rolison R) and SD41 (Hinchey vs Sheehan); Assembly AD103 (Shrestha vs Lopez), AD104 (Jacobson, unopposed), AD105 (Talarico D vs Beephan R), AD106 (Didi Barrett D vs Gregory Campus R); County Sheriff (Imperati, unopposed R/Con); County Legislature districts 1-25; Supreme Court Justice; ~50 town/village/justice/library/highway/clerk/council races (Amenia, Beekman, Clinton, Dover, Hyde Park, Milan, Pawling, Pine Plains, Pleasant Valley, Poughkeepsie town+city library, Rhinebeck, Stanford, Union Vale, Wappinger wards, Washington, Millbrook, East Fishkill, LaGrange); ~10 town propositions. No US Senate race in NY in 2026 (not in feed). Contest 'voteFor' and 'referendum' fields present. DASHBOARD VIABILITY: high - clean JSON, stable IDs, precinct breakdown, vote-method split, party-line split (fusion lines listed separately: must sum Dem+Wor etc. per candidate by candidate name)."
+    },
+    {
+      "name": "Dutchess County BOE election results landing page + PDF/CSV archive",
+      "url": "https://elections.dutchessny.gov/election-results/",
+      "cost": "Free, no auth",
+      "latency": "Static WordPress (WP Engine, nginx, cf-edge-cache, cache-control max-age=600) - the HTML page itself is cached 10 min. PDFs are posted after the fact; BOE states results are posted 'slowly throughout the evening and next day' (per local blog, no specific interval published). Absentee ballots are counted and uploaded later and totals shift.",
+      "granularity": "PDF reports per contest at county/ED level (e.g. 'Detailed Results by Contest Table' for PE26, GE25-Official-Summary-Results.pdf); older certified results include occasional CSV (e.g. .../wp-content/uploads/2020/02/GE13-Official-Results-Spreadsheet.csv).",
+      "verified_live": "YES - page returns 200 (verified headers). Homepage button to the Enhanced Voting GE2026 results confirmed in page HTML. No GE2026 election-night PDF/CSV exists yet.",
+      "notes": "Official sanctioned source but PDF-oriented; not good for live scraping. Also exposes WordPress REST at https://elections.dutchessny.gov/wp-json/ (wp/v2/pages, posts feed at /feed/) - useful only to detect when BOE posts a news item/new PDF (poll /wp-json/wp/v2/media or /feed/). Site is WP, NOT Clarity/Scytl, Civera, KnowInk or ElectionStats. The county main site www.dutchessny.gov/Departments/Board-of-Elections/ is legacy ASP.NET/IIS static HTML (no results API; /Election-Results.htm returns 302 -> 404)."
+    },
+    {
+      "name": "Enhanced Voting results frontend (HTML shell, Angular SPA) for Dutchess",
+      "url": "https://app.enhancedvoting.com/results/public/dutchess-county-ny/GE2026",
+      "cost": "Free",
+      "latency": "Edge-cached s-maxage=60",
+      "granularity": "Same as API (county, contest, ED map via Mapbox vector tiles)",
+      "verified_live": "YES (HTTP 200). Bundle main-SDUQU7SI.js config: api.endpoint=/results/public/api, graphQlEndpoint=/admin/gateway/graphql (admin, not public), cdn=/cdn/results (media export files via jurisdiction.mediaExportPath), Mapbox for map.",
+      "notes": "I reverse-engineered the API from the JS bundle (services: getElection, getStatistics, getPrecinctVoterTurnout, getData(slug,id,ballotItemId?), getCloseRaces, getJurisdiction). Jurisdiction JSON has 'mediaExportPath' possibly pointing to downloadable export (not probed)."
+    },
+    {
+      "name": "Ulster County BOE (Enhanced Voting GE2026 also live; BOE site is separate WordPress with static results HTML/PDF)",
+      "url": "https://app.enhancedvoting.com/results/public/api/elections/ulster-county-ny/GE2026_20261019155937/data",
+      "cost": "Free, no auth, CORS *",
+      "latency": "max-age=60; election asOf=2026-11-02T22:20:15Z (pre-election, zeros); election-night cadence unverified",
+      "granularity": "County + 165 precincts, 91 ballot items",
+      "verified_live": "YES (HTTP 200, 342KB JSON, schema identical to Dutchess). Note election ID is NOT 'GE2026' here - it is 'GE2026_20261019155937' (get IDs from /jurisdictions/ulster-county-ny .elections[]).",
+      "notes": "Undocumented backend. Ulster BOE's own site is https://elections.ulstercountyny.gov (WordPress) which historically posts results as static HTML/PDF (e.g. /election-results/2025-06-24-official.html, 2026-06-23-Primary-Results.pdf); GE2026 page not found yet (my guess URL 404'd). Unverified whether Ulster's BOE homepage links to Enhanced Voting."
+    },
+    {
+      "name": "Orange County NY (Enhanced Voting)",
+      "url": "https://app.enhancedvoting.com/results/public/api/elections/orange-county-ny/GE2026/data",
+      "cost": "Free, no auth",
+      "latency": "max-age=60; asOf 2026-10-27 (pre-election zeros)",
+      "granularity": "County + 340 precincts, 92 ballot items",
+      "verified_live": "YES (HTTP 200, 512KB). Prior elections PE26, GE25, PE25 also present in jurisdiction list.",
+      "notes": "Undocumented backend. Orange County website (orangecountygov.com, redirects to orangecountyny.gov) returned HTTP 403 to curl, so I could not verify whether BOE links to this page - unverified link-through."
+    },
+    {
+      "name": "Putnam County NY (Enhanced Voting)",
+      "url": "https://app.enhancedvoting.com/results/public/api/elections/putnam-county-ny/GE2026_20261028103950/data",
+      "cost": "Free, no auth",
+      "latency": "max-age=60; asOf 2026-10-28 (pre-election zeros); note GE2026 alias returns HTTP 204 - must use ID GE2026_20261028103950",
+      "granularity": "County + 81 precincts, 25 ballot items",
+      "verified_live": "YES (HTTP 200, 182KB). Prior PE26, GE25, PE25 present.",
+      "notes": "Undocumented backend. Putnam BOE site paths I guessed (putnamcountyny.gov/boe/) 404'd; link-through from BOE unverified."
+    },
+    {
+      "name": "Other NY counties on same Enhanced Voting platform (Columbia, Westchester, Rockland)",
+      "url": "https://app.enhancedvoting.com/results/public/api/jurisdictions/{county}-county-ny",
+      "cost": "Free, no auth",
+      "latency": "max-age=60",
+      "granularity": "County + precinct. Columbia: 62 precincts/43 items (id GE2026, asOf 2026-11-03T15:02Z); Westchester: 906 precincts/94 items (id '2026GeneralElection', asOf 2026-10-21); Rockland: 307 precincts/37 items (id GE2026, asOf 2026-10-22)",
+      "verified_live": "YES (GE2026 /data returned 200 for all three)",
+      "notes": "Hudson Valley is heavily on this one vendor, so ONE adapter (slug + electionId from /jurisdictions/{slug}.elections[]) covers Dutchess, Orange, Putnam, Ulster, Columbia, Westchester, Rockland. CAVEAT: /jurisdictions/{junk-slug} also returns HTTP 200 with a stub, so existence must be judged by non-empty .elections[]; the 'newyork' stub had no elections (no statewide aggregate on this platform found). Enhanced Voting is a commercial vendor; I found no published ToS/public-API terms - treat as unofficial and be gentle; keep a fallback to the BOE PDF/WordPress feed."
+    }
+  ],
+  "summary": "Dutchess County BOE hosts election-night results on the Enhanced Voting platform, not on Clarity/Scytl, Civera, KnowInk or ElectionStats. The BOE homepage at elections.dutchessny.gov (WordPress on WP Engine) has a button 'General Election 2026 Unofficial Election Results' that links to https://app.enhancedvoting.com/results/public/dutchess-county-ny/GE2026. That page is an Angular app backed by an unauthenticated JSON API, which I found in the JS bundle and probed. It returns HTTP 200 with CORS '*', and responses are cached for 60 seconds (max-age=60). The API is undocumented and has no published terms.\\n\\nTo poll cheaply, GET /results/public/api/elections/dutchess-county-ny/GE2026 (4KB). It returns asOf, lastUpdated, publishDate, publishVersionId, ballotsCast and precinctsReporting, so a change in publishVersionId or asOf signals a new batch. Then GET .../GE2026/data (450KB) for all 101 contests with candidate, party-line and vote-method splits. Precinct-level (ED) results come from .../GE2026/data/ballot-item/{ballotItemId} (about 1.2MB per contest, 158 EDs). I confirmed this precinct-level schema on the finished GE25 election. Vote totals are split into Election Day, Early Voting, Absentee/EMB and Affidavit, and fusion party lines (Dem+WFP, Rep+Con) are separate rows that you have to sum per candidate.\\n\\nAs of 19:21 EST on Nov 3, the Dutchess GE2026 feed is a pre-election placeholder. asOf is Oct 27, ballotsCast is 0, every vote count is 0 and reporting units are 0/0. NY polls close at 9pm ET, so I could not observe live updates, and I could not verify the real election-night upload cadence. The BOE only says results post 'slowly throughout the evening and next day', and absentees are added later. Retry after about 9:15pm ET and watch the asOf and publishVersionId values to measure the batch cadence.\\n\\nThe Dutchess ballot has 101 items. State: Governor (Hochul/Adams vs Blakeman/Hood), Comptroller, Attorney General. Federal: NY-17 (Conley vs Lawler) and NY-18 (Ryan vs Auringer). Legislature: State Senate SD39 and SD41, and Assembly AD103 to AD106. County: Sheriff (Imperati, unopposed) and 25 County Legislature districts. Also a Supreme Court Justice contest, about 50 town, village and library races, and about 10 town propositions.\\n\\nThe same vendor backs the neighboring counties, so one adapter covers them. Probed with HTTP 200 on GE2026 /data: Orange (id GE2026, 340 precincts), Putnam (id GE2026_20261028103950, 81 precincts), Ulster (id GE2026_20261019155937, 165 precincts), Columbia (62), Rockland (307) and Westchester (id 2026GeneralElection, 906). All are pre-election zeros. Look up each county's election ID at /jurisdictions/{slug}, since the IDs differ, and judge existence by a non-empty .elections[] list, because junk slugs also return 200. Ulster's BOE site (elections.ulstercountyny.gov) is separate WordPress with static HTML/PDF results, and I could not confirm it links to Enhanced Voting. Orange's county site returned 403 to curl. The Dutchess county main site is a legacy ASP.NET static site with no results API.\\n\\nThe BOE's WordPress site also posts PDFs (and occasional CSV) of results, with the page cached for 10 minutes, and exposes /wp-json/ and /feed/. Those are useful only as a fallback or to detect new postings.\\n\\nA dashboard is clearly feasible on this free source, as long as the BOE actually publishes during the night. Risks: the API is unofficial and could change or be throttled, and the update rate is bounded by BOE batch uploads. Poll the small metadata endpoint every 60 seconds and fetch /data only when publishVersionId changes. Nothing here required payment or authentication.\"}"
+}

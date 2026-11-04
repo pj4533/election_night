@@ -1,0 +1,66 @@
+{
+ "stissing.jpg": {
+  "file": "/geo/local/stissing.jpg",
+  "title": "Stissing Mountain, Pine Plains, NY.jpg",
+  "author": "Daniel Case",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Stissing_Mountain,_Pine_Plains,_NY.jpg"
+ },
+ "pp-tower.jpg": {
+  "file": "/geo/local/pp-tower.jpg",
+  "title": "Pine Plains, NY, from Stissing Mountain fire tower.jpg",
+  "author": "Daniel Case",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pine_Plains,_NY,_from_Stissing_Mountain_fire_tower.jpg"
+ },
+ "stissing-pond.jpg": {
+  "file": "/geo/local/stissing-pond.jpg",
+  "title": "Stissing Mountain and pond.JPG",
+  "author": "Juliancolton",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Stissing_Mountain_and_pond.JPG"
+ },
+ "pp-townhall.jpg": {
+  "file": "/geo/local/pp-townhall.jpg",
+  "title": "Pine Plains NY Town Hall.jpg",
+  "author": "J. Passepartout",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Pine_Plains_NY_Town_Hall.jpg"
+ },
+ "thompson.jpg": {
+  "file": "/geo/local/thompson.jpg",
+  "title": "Thompson Pond from Stissing Mountain fire tower, Pine Plains, NY.jpg",
+  "author": "Daniel Case",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Thompson_Pond_from_Stissing_Mountain_fire_tower,_Pine_Plains,_NY.jpg"
+ },
+ "bangall-po.jpg": {
+  "file": "/geo/local/bangall-po.jpg",
+  "title": "Bangall, NY, Post Office.jpg",
+  "author": "Daniel Case",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Bangall,_NY,_Post_Office.jpg"
+ },
+ "bangall-church.jpg": {
+  "file": "/geo/local/bangall-church.jpg",
+  "title": "Immaculate Conception Church (Bangall, New York).jpg",
+  "author": "Indefatigable2",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+  "page": "https://commons.wikimedia.org/wiki/File:Immaculate_Conception_Church_(Bangall,_New_York).jpg"
+ },
+ "stanfordville-station.jpg": {
+  "file": "/geo/local/stanfordville-station.jpg",
+  "title": "Stanfordville station, circa 1897.jpg",
+  "author": "Philadelphia, Reading and New England Railroad",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "page": "https://commons.wikimedia.org/wiki/File:Stanfordville_station,_circa_1897.jpg"
+ }
+}

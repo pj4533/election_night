@@ -1,0 +1,19 @@
+/* WAVE TRACKER takeover (0.8vw–71vw × 8–79vh) */
+.wv-board { position: fixed; left: .8vw; top: 8vh; width: 70.2vw; height: 71vh; padding: 1.4vh 1.6vw; display: flex; flex-direction: column; gap: 1vh;
+  background: linear-gradient(160deg, rgba(10,14,48,.97), rgba(4,6,24,.98)); border: 1px solid var(--magenta); box-shadow: 0 0 2vw rgba(255,43,214,.25);
+  opacity: 0; visibility: hidden; transform: translateX(-2vw); transition: opacity .4s, transform .4s, visibility 0s .4s; overflow: hidden; }
+.wv-board.on { opacity: 1; visibility: visible; transform: none; transition: opacity .4s, transform .4s; }
+.wv-kick { font: 700 .95vw var(--font-display); letter-spacing: .25em; color: var(--magenta); }
+.wv-head { font: 900 3.4vw/1 var(--font-display); color: #fff; text-shadow: 0 0 1.2vw var(--dem); }
+.wv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8vw; }
+.wv-stat { border: 2px solid var(--pc); background: color-mix(in srgb, var(--pc) 14%, transparent); padding: .8vh .8vw; display: flex; flex-direction: column; }
+.wv-stat b { font: 400 4vw/1 var(--font-mono); color: #fff; text-shadow: 0 0 1vw var(--pc); }
+.wv-stat span { font: 900 .85vw var(--font-display); color: var(--pc); letter-spacing: .04em; }
+.wv-cols { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2vw; overflow: hidden; }
+.wv-h2 { font: 700 .95vw var(--font-display); letter-spacing: .15em; color: var(--yellow); margin-bottom: .6vh; }
+.wv-flip { display: grid; grid-template-columns: 1.4fr .9fr 1.4fr auto; align-items: center; gap: .6vw; padding: .55vh .7vw; margin-bottom: .5vh; border-left: .45vw solid var(--pc); background: color-mix(in srgb, var(--pc) 10%, transparent); }
+.wv-st { font: 900 1.1vw var(--font-display); color: #fff; } .wv-of { font: 700 .85vw var(--font-ui); color: var(--muted); }
+.wv-w { font: 700 1.05vw var(--font-ui); color: var(--pc); }
+.wv-tag { font: 900 .75vw var(--font-display); color: #07021a; background: var(--yellow); padding: .2vh .4vw; }
+.wv-flip.up .wv-tag { background: var(--magenta); color: #fff; }
+.wv-none { font: 700 1vw var(--font-ui); color: var(--muted); }

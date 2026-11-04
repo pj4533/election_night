@@ -1,0 +1,1037 @@
+{
+ "generatedAt": "2026-11-04T02:15:42.379Z",
+ "note": "pct = share of all votes cast in contest in that ED (fusion lines summed). dem/gop = two-party view precomputed.",
+ "eds": {
+  "Pine Plains ED 1": {
+   "turnout": {
+    "2023": {
+     "contest": "County Executive",
+     "total": 820,
+     "methods": null
+    },
+    "2024": {
+     "contest": "President of the United States of America",
+     "total": 1389,
+     "methods": {
+      "Election Day": 895,
+      "Early Voting": 319,
+      "Absentee/EMB": 175,
+      "Affidavit": 0
+     }
+    },
+    "2025": {
+     "contest": "Statewide Proposal",
+     "total": 802,
+     "methods": {
+      "Election Day": 624,
+      "Early Voting": 135,
+      "Absentee/EMB": 43,
+      "Affidavit": 0
+     }
+    }
+   },
+   "contests": [
+    {
+     "year": 2024,
+     "label": "President",
+     "role": "pres",
+     "contest": "President of the United States of America",
+     "total": 1389,
+     "dem": {
+      "name": "Kamala D. Harris/ Tim Walz",
+      "party": "DEM",
+      "votes": 677,
+      "pct": 48.7
+     },
+     "gop": {
+      "name": "Donald J. Trump/ JD Vance",
+      "party": "GOP",
+      "votes": 696,
+      "pct": 50.1
+     },
+     "demTwoParty": 49.3,
+     "candidates": [
+      {
+       "name": "Donald J. Trump/ JD Vance",
+       "party": "GOP",
+       "votes": 696,
+       "pct": 50.1
+      },
+      {
+       "name": "Kamala D. Harris/ Tim Walz",
+       "party": "DEM",
+       "votes": 677,
+       "pct": 48.7
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 16,
+       "pct": 1.2
+      }
+     ]
+    },
+    {
+     "year": 2024,
+     "label": "US Senate",
+     "role": "base",
+     "contest": "United States Senator",
+     "total": 1349,
+     "dem": {
+      "name": "Kirsten E. Gillibrand",
+      "party": "DEM",
+      "votes": 740,
+      "pct": 54.9
+     },
+     "gop": {
+      "name": "Michael D. Sapraicone",
+      "party": "GOP",
+      "votes": 601,
+      "pct": 44.6
+     },
+     "demTwoParty": 55.2,
+     "candidates": [
+      {
+       "name": "Kirsten E. Gillibrand",
+       "party": "DEM",
+       "votes": 740,
+       "pct": 54.9
+      },
+      {
+       "name": "Michael D. Sapraicone",
+       "party": "GOP",
+       "votes": 601,
+       "pct": 44.6
+      },
+      {
+       "name": "Diane Sare",
+       "party": "OTH",
+       "votes": 7,
+       "pct": 0.5
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 1,
+       "pct": 0.1
+      }
+     ]
+    },
+    {
+     "year": 2024,
+     "label": "Congress",
+     "role": "base",
+     "contest": "Representative in Congress- 18th Congressional District",
+     "total": 1355,
+     "dem": {
+      "name": "Pat Ryan",
+      "party": "DEM",
+      "votes": 709,
+      "pct": 52.3
+     },
+     "gop": {
+      "name": "Alison Esposito",
+      "party": "GOP",
+      "votes": 645,
+      "pct": 47.6
+     },
+     "demTwoParty": 52.4,
+     "candidates": [
+      {
+       "name": "Pat Ryan",
+       "party": "DEM",
+       "votes": 709,
+       "pct": 52.3
+      },
+      {
+       "name": "Alison Esposito",
+       "party": "GOP",
+       "votes": 645,
+       "pct": 47.6
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 1,
+       "pct": 0.1
+      }
+     ]
+    },
+    {
+     "year": 2025,
+     "label": "Comptroller",
+     "role": "base",
+     "contest": "Comptroller",
+     "total": 829,
+     "dem": {
+      "name": "Dan Aymar-Blair",
+      "party": "DEM",
+      "votes": 438,
+      "pct": 52.8
+     },
+     "gop": {
+      "name": "William G. Truitt",
+      "party": "GOP",
+      "votes": 391,
+      "pct": 47.2
+     },
+     "demTwoParty": 52.8,
+     "candidates": [
+      {
+       "name": "Dan Aymar-Blair",
+       "party": "DEM",
+       "votes": 438,
+       "pct": 52.8
+      },
+      {
+       "name": "William G. Truitt",
+       "party": "GOP",
+       "votes": 391,
+       "pct": 47.2
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2025,
+     "label": "Town Supervisor",
+     "role": "town",
+     "contest": "Pine Plains Town Supervisor",
+     "total": 846,
+     "dem": {
+      "name": "Kevin Joseph Walsh",
+      "party": "DEM",
+      "votes": 419,
+      "pct": 49.5
+     },
+     "gop": {
+      "name": "Brian Walsh",
+      "party": "GOP",
+      "votes": 427,
+      "pct": 50.5
+     },
+     "demTwoParty": 49.5,
+     "candidates": [
+      {
+       "name": "Brian Walsh",
+       "party": "GOP",
+       "votes": 427,
+       "pct": 50.5
+      },
+      {
+       "name": "Kevin Joseph Walsh",
+       "party": "DEM",
+       "votes": 419,
+       "pct": 49.5
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2023,
+     "label": "County Exec",
+     "role": "base",
+     "contest": "County Executive",
+     "total": 820,
+     "dem": {
+      "name": "Tommy Zurhellen",
+      "party": "DEM",
+      "votes": 313,
+      "pct": 38.2
+     },
+     "gop": {
+      "name": "Susan J. Serino",
+      "party": "GOP",
+      "votes": 507,
+      "pct": 61.8
+     },
+     "demTwoParty": 38.2,
+     "candidates": [
+      {
+       "name": "Susan J. Serino",
+       "party": "GOP",
+       "votes": 507,
+       "pct": 61.8
+      },
+      {
+       "name": "Tommy Zurhellen",
+       "party": "DEM",
+       "votes": 313,
+       "pct": 38.2
+      },
+      {
+       "name": "Write-In",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2023,
+     "label": "County Clerk",
+     "role": "base",
+     "contest": "County Clerk",
+     "total": 786,
+     "dem": {
+      "name": "Kenya Gadsden",
+      "party": "DEM",
+      "votes": 347,
+      "pct": 44.1
+     },
+     "gop": {
+      "name": "Bradford Kendall",
+      "party": "GOP",
+      "votes": 439,
+      "pct": 55.9
+     },
+     "demTwoParty": 44.1,
+     "candidates": [
+      {
+       "name": "Bradford Kendall",
+       "party": "GOP",
+       "votes": 439,
+       "pct": 55.9
+      },
+      {
+       "name": "Kenya Gadsden",
+       "party": "DEM",
+       "votes": 347,
+       "pct": 44.1
+      },
+      {
+       "name": "Write-In",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    }
+   ]
+  },
+  "Stanford ED 1": {
+   "turnout": {
+    "2023": {
+     "contest": "County Executive",
+     "total": 688,
+     "methods": null
+    },
+    "2024": {
+     "contest": "President of the United States of America",
+     "total": 1127,
+     "methods": {
+      "Election Day": 528,
+      "Early Voting": 464,
+      "Absentee/EMB": 135,
+      "Affidavit": 0
+     }
+    },
+    "2025": {
+     "contest": "Statewide Proposal",
+     "total": 669,
+     "methods": {
+      "Election Day": 404,
+      "Early Voting": 233,
+      "Absentee/EMB": 32,
+      "Affidavit": 0
+     }
+    }
+   },
+   "contests": [
+    {
+     "year": 2024,
+     "label": "President",
+     "role": "pres",
+     "contest": "President of the United States of America",
+     "total": 1127,
+     "dem": {
+      "name": "Kamala D. Harris/ Tim Walz",
+      "party": "DEM",
+      "votes": 584,
+      "pct": 51.8
+     },
+     "gop": {
+      "name": "Donald J. Trump/ JD Vance",
+      "party": "GOP",
+      "votes": 527,
+      "pct": 46.8
+     },
+     "demTwoParty": 52.6,
+     "candidates": [
+      {
+       "name": "Kamala D. Harris/ Tim Walz",
+       "party": "DEM",
+       "votes": 584,
+       "pct": 51.8
+      },
+      {
+       "name": "Donald J. Trump/ JD Vance",
+       "party": "GOP",
+       "votes": 527,
+       "pct": 46.8
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 16,
+       "pct": 1.4
+      }
+     ]
+    },
+    {
+     "year": 2024,
+     "label": "US Senate",
+     "role": "base",
+     "contest": "United States Senator",
+     "total": 1117,
+     "dem": {
+      "name": "Kirsten E. Gillibrand",
+      "party": "DEM",
+      "votes": 622,
+      "pct": 55.7
+     },
+     "gop": {
+      "name": "Michael D. Sapraicone",
+      "party": "GOP",
+      "votes": 490,
+      "pct": 43.9
+     },
+     "demTwoParty": 55.9,
+     "candidates": [
+      {
+       "name": "Kirsten E. Gillibrand",
+       "party": "DEM",
+       "votes": 622,
+       "pct": 55.7
+      },
+      {
+       "name": "Michael D. Sapraicone",
+       "party": "GOP",
+       "votes": 490,
+       "pct": 43.9
+      },
+      {
+       "name": "Diane Sare",
+       "party": "OTH",
+       "votes": 5,
+       "pct": 0.4
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2024,
+     "label": "Congress",
+     "role": "base",
+     "contest": "Representative in Congress- 18th Congressional District",
+     "total": 1112,
+     "dem": {
+      "name": "Pat Ryan",
+      "party": "DEM",
+      "votes": 613,
+      "pct": 55.1
+     },
+     "gop": {
+      "name": "Alison Esposito",
+      "party": "GOP",
+      "votes": 499,
+      "pct": 44.9
+     },
+     "demTwoParty": 55.1,
+     "candidates": [
+      {
+       "name": "Pat Ryan",
+       "party": "DEM",
+       "votes": 613,
+       "pct": 55.1
+      },
+      {
+       "name": "Alison Esposito",
+       "party": "GOP",
+       "votes": 499,
+       "pct": 44.9
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2025,
+     "label": "Comptroller",
+     "role": "base",
+     "contest": "Comptroller",
+     "total": 703,
+     "dem": {
+      "name": "Dan Aymar-Blair",
+      "party": "DEM",
+      "votes": 401,
+      "pct": 57
+     },
+     "gop": {
+      "name": "William G. Truitt",
+      "party": "GOP",
+      "votes": 302,
+      "pct": 43
+     },
+     "demTwoParty": 57,
+     "candidates": [
+      {
+       "name": "Dan Aymar-Blair",
+       "party": "DEM",
+       "votes": 401,
+       "pct": 57
+      },
+      {
+       "name": "William G. Truitt",
+       "party": "GOP",
+       "votes": 302,
+       "pct": 43
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2025,
+     "label": "Town Supervisor",
+     "role": "town",
+     "contest": "Stanford Town Supervisor",
+     "total": 705,
+     "dem": {
+      "name": "Julia Descoteaux",
+      "party": "DEM",
+      "votes": 438,
+      "pct": 62.1
+     },
+     "gop": {
+      "name": "Michael Roche",
+      "party": "GOP",
+      "votes": 267,
+      "pct": 37.9
+     },
+     "demTwoParty": 62.1,
+     "candidates": [
+      {
+       "name": "Julia Descoteaux",
+       "party": "DEM",
+       "votes": 438,
+       "pct": 62.1
+      },
+      {
+       "name": "Michael Roche",
+       "party": "GOP",
+       "votes": 267,
+       "pct": 37.9
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2023,
+     "label": "County Exec",
+     "role": "base",
+     "contest": "County Executive",
+     "total": 688,
+     "dem": {
+      "name": "Tommy Zurhellen",
+      "party": "DEM",
+      "votes": 325,
+      "pct": 47.2
+     },
+     "gop": {
+      "name": "Susan J. Serino",
+      "party": "GOP",
+      "votes": 363,
+      "pct": 52.8
+     },
+     "demTwoParty": 47.2,
+     "candidates": [
+      {
+       "name": "Susan J. Serino",
+       "party": "GOP",
+       "votes": 363,
+       "pct": 52.8
+      },
+      {
+       "name": "Tommy Zurhellen",
+       "party": "DEM",
+       "votes": 325,
+       "pct": 47.2
+      },
+      {
+       "name": "Write-In",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2023,
+     "label": "County Clerk",
+     "role": "base",
+     "contest": "County Clerk",
+     "total": 682,
+     "dem": {
+      "name": "Kenya Gadsden",
+      "party": "DEM",
+      "votes": 339,
+      "pct": 49.7
+     },
+     "gop": {
+      "name": "Bradford Kendall",
+      "party": "GOP",
+      "votes": 343,
+      "pct": 50.3
+     },
+     "demTwoParty": 49.7,
+     "candidates": [
+      {
+       "name": "Bradford Kendall",
+       "party": "GOP",
+       "votes": 343,
+       "pct": 50.3
+      },
+      {
+       "name": "Kenya Gadsden",
+       "party": "DEM",
+       "votes": 339,
+       "pct": 49.7
+      },
+      {
+       "name": "Write-In",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2023,
+     "label": "Town Supervisor",
+     "role": "town",
+     "contest": "Stanford Town Supervisor",
+     "total": 694,
+     "dem": {
+      "name": "Wendy Burton",
+      "party": "DEM",
+      "votes": 418,
+      "pct": 60.2
+     },
+     "gop": {
+      "name": "Bill Harklerode",
+      "party": "GOP",
+      "votes": 276,
+      "pct": 39.8
+     },
+     "demTwoParty": 60.2,
+     "candidates": [
+      {
+       "name": "Wendy Burton",
+       "party": "DEM",
+       "votes": 418,
+       "pct": 60.2
+      },
+      {
+       "name": "Bill Harklerode",
+       "party": "GOP",
+       "votes": 276,
+       "pct": 39.8
+      },
+      {
+       "name": "Write-In",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    }
+   ]
+  },
+  "Stanford ED 2": {
+   "turnout": {
+    "2023": {
+     "contest": "County Executive",
+     "total": 641,
+     "methods": null
+    },
+    "2024": {
+     "contest": "President of the United States of America",
+     "total": 1090,
+     "methods": {
+      "Election Day": 529,
+      "Early Voting": 432,
+      "Absentee/EMB": 129,
+      "Affidavit": 0
+     }
+    },
+    "2025": {
+     "contest": "Statewide Proposal",
+     "total": 655,
+     "methods": {
+      "Election Day": 416,
+      "Early Voting": 213,
+      "Absentee/EMB": 26,
+      "Affidavit": 0
+     }
+    }
+   },
+   "contests": [
+    {
+     "year": 2024,
+     "label": "President",
+     "role": "pres",
+     "contest": "President of the United States of America",
+     "total": 1090,
+     "dem": {
+      "name": "Kamala D. Harris/ Tim Walz",
+      "party": "DEM",
+      "votes": 521,
+      "pct": 47.8
+     },
+     "gop": {
+      "name": "Donald J. Trump/ JD Vance",
+      "party": "GOP",
+      "votes": 560,
+      "pct": 51.4
+     },
+     "demTwoParty": 48.2,
+     "candidates": [
+      {
+       "name": "Donald J. Trump/ JD Vance",
+       "party": "GOP",
+       "votes": 560,
+       "pct": 51.4
+      },
+      {
+       "name": "Kamala D. Harris/ Tim Walz",
+       "party": "DEM",
+       "votes": 521,
+       "pct": 47.8
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 9,
+       "pct": 0.8
+      }
+     ]
+    },
+    {
+     "year": 2024,
+     "label": "US Senate",
+     "role": "base",
+     "contest": "United States Senator",
+     "total": 1078,
+     "dem": {
+      "name": "Kirsten E. Gillibrand",
+      "party": "DEM",
+      "votes": 558,
+      "pct": 51.8
+     },
+     "gop": {
+      "name": "Michael D. Sapraicone",
+      "party": "GOP",
+      "votes": 513,
+      "pct": 47.6
+     },
+     "demTwoParty": 52.1,
+     "candidates": [
+      {
+       "name": "Kirsten E. Gillibrand",
+       "party": "DEM",
+       "votes": 558,
+       "pct": 51.8
+      },
+      {
+       "name": "Michael D. Sapraicone",
+       "party": "GOP",
+       "votes": 513,
+       "pct": 47.6
+      },
+      {
+       "name": "Diane Sare",
+       "party": "OTH",
+       "votes": 6,
+       "pct": 0.6
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 1,
+       "pct": 0.1
+      }
+     ]
+    },
+    {
+     "year": 2024,
+     "label": "Congress",
+     "role": "base",
+     "contest": "Representative in Congress- 18th Congressional District",
+     "total": 1074,
+     "dem": {
+      "name": "Pat Ryan",
+      "party": "DEM",
+      "votes": 544,
+      "pct": 50.7
+     },
+     "gop": {
+      "name": "Alison Esposito",
+      "party": "GOP",
+      "votes": 529,
+      "pct": 49.3
+     },
+     "demTwoParty": 50.7,
+     "candidates": [
+      {
+       "name": "Pat Ryan",
+       "party": "DEM",
+       "votes": 544,
+       "pct": 50.7
+      },
+      {
+       "name": "Alison Esposito",
+       "party": "GOP",
+       "votes": 529,
+       "pct": 49.3
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 1,
+       "pct": 0.1
+      }
+     ]
+    },
+    {
+     "year": 2025,
+     "label": "Comptroller",
+     "role": "base",
+     "contest": "Comptroller",
+     "total": 682,
+     "dem": {
+      "name": "Dan Aymar-Blair",
+      "party": "DEM",
+      "votes": 329,
+      "pct": 48.2
+     },
+     "gop": {
+      "name": "William G. Truitt",
+      "party": "GOP",
+      "votes": 353,
+      "pct": 51.8
+     },
+     "demTwoParty": 48.2,
+     "candidates": [
+      {
+       "name": "William G. Truitt",
+       "party": "GOP",
+       "votes": 353,
+       "pct": 51.8
+      },
+      {
+       "name": "Dan Aymar-Blair",
+       "party": "DEM",
+       "votes": 329,
+       "pct": 48.2
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2025,
+     "label": "Town Supervisor",
+     "role": "town",
+     "contest": "Stanford Town Supervisor",
+     "total": 684,
+     "dem": {
+      "name": "Julia Descoteaux",
+      "party": "DEM",
+      "votes": 372,
+      "pct": 54.4
+     },
+     "gop": {
+      "name": "Michael Roche",
+      "party": "GOP",
+      "votes": 312,
+      "pct": 45.6
+     },
+     "demTwoParty": 54.4,
+     "candidates": [
+      {
+       "name": "Julia Descoteaux",
+       "party": "DEM",
+       "votes": 372,
+       "pct": 54.4
+      },
+      {
+       "name": "Michael Roche",
+       "party": "GOP",
+       "votes": 312,
+       "pct": 45.6
+      },
+      {
+       "name": "Write-in",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2023,
+     "label": "County Exec",
+     "role": "base",
+     "contest": "County Executive",
+     "total": 641,
+     "dem": {
+      "name": "Tommy Zurhellen",
+      "party": "DEM",
+      "votes": 263,
+      "pct": 41
+     },
+     "gop": {
+      "name": "Susan J. Serino",
+      "party": "GOP",
+      "votes": 378,
+      "pct": 59
+     },
+     "demTwoParty": 41,
+     "candidates": [
+      {
+       "name": "Susan J. Serino",
+       "party": "GOP",
+       "votes": 378,
+       "pct": 59
+      },
+      {
+       "name": "Tommy Zurhellen",
+       "party": "DEM",
+       "votes": 263,
+       "pct": 41
+      },
+      {
+       "name": "Write-In",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2023,
+     "label": "County Clerk",
+     "role": "base",
+     "contest": "County Clerk",
+     "total": 638,
+     "dem": {
+      "name": "Kenya Gadsden",
+      "party": "DEM",
+      "votes": 273,
+      "pct": 42.8
+     },
+     "gop": {
+      "name": "Bradford Kendall",
+      "party": "GOP",
+      "votes": 365,
+      "pct": 57.2
+     },
+     "demTwoParty": 42.8,
+     "candidates": [
+      {
+       "name": "Bradford Kendall",
+       "party": "GOP",
+       "votes": 365,
+       "pct": 57.2
+      },
+      {
+       "name": "Kenya Gadsden",
+       "party": "DEM",
+       "votes": 273,
+       "pct": 42.8
+      },
+      {
+       "name": "Write-In",
+       "party": "OTH",
+       "votes": 0,
+       "pct": 0
+      }
+     ]
+    },
+    {
+     "year": 2023,
+     "label": "Town Supervisor",
+     "role": "town",
+     "contest": "Stanford Town Supervisor",
+     "total": 639,
+     "dem": {
+      "name": "Wendy Burton",
+      "party": "DEM",
+      "votes": 339,
+      "pct": 53.1
+     },
+     "gop": {
+      "name": "Bill Harklerode",
+      "party": "GOP",
+      "votes": 299,
+      "pct": 46.8
+     },
+     "demTwoParty": 53.1,
+     "candidates": [
+      {
+       "name": "Wendy Burton",
+       "party": "DEM",
+       "votes": 339,
+       "pct": 53.1
+      },
+      {
+       "name": "Bill Harklerode",
+       "party": "GOP",
+       "votes": 299,
+       "pct": 46.8
+      },
+      {
+       "name": "Write-In",
+       "party": "OTH",
+       "votes": 1,
+       "pct": 0.2
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

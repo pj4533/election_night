@@ -1,0 +1,50 @@
+{
+  "key": "nystate",
+  "sources": [
+    {
+      "name": "NYS Board of Elections Election Night Reporting (ENR)",
+      "url": "https://nyenr.elections.ny.gov/",
+      "cost": "Free",
+      "latency": "Unverified for tonight. Per site notice, results appear some time after the 9 PM ET poll close. They are fed by county boards' unofficial election-night reports to the State Board (practice since 2013). Exact refresh cadence not confirmed.",
+      "granularity": "Statewide, with county breakdowns per race (claimed by search snippets and past press republishing; not directly viewed)",
+      "verified_live": "NO. curl and WebFetch both got HTTP 403 with 'cf-mitigated: challenge' (Cloudflare managed JS challenge). robots.txt is also challenged. Site resolves and is up, but cannot be read by scripted clients. Probe time was about 7:18 PM ET on Nov 3, before polls closed.",
+      "notes": "Format unknown (HTML; the Home.aspx URL suggests ASP.NET). No JSON, CSV or API endpoint found or documented. Could not inspect the underlying data calls. A browser-driven probe (Playwright or Chrome tools, with the network tab open) is needed to find any XHR/JSON feed. Scraping with plain HTTP will likely be blocked by the Cloudflare challenge. Results are explicitly unofficial. Write-ins are shown only in official results.",
+      "auth": "None for humans, but a Cloudflare bot challenge blocks curl",
+      "official": "Yes, official but unofficial results (State Board)"
+    },
+    {
+      "name": "NYS Board of Elections main site (election results and notices)",
+      "url": "https://elections.ny.gov/",
+      "cost": "Free",
+      "latency": "Certified results come weeks later. The state board posts a notice per election pointing to the ENR site.",
+      "granularity": "Statewide and county; certified results as PDF/XLSX (unverified)",
+      "verified_live": "NO. Same Cloudflare 403 challenge on elections.ny.gov/election-results and on results.elections.ny.gov (the latter is just a guessed hostname that also hit the challenge, so its existence is not established).",
+      "notes": "The search index confirms pages like 'state-board-website-have-unofficial-results-...' exist and state that the ENR site hosts unofficial results. No API documented in anything I could read. Certified results are historically posted as downloadable files (unverified). The 403 means the site was not directly readable.",
+      "auth": "None; Cloudflare challenge",
+      "official": "Yes"
+    },
+    {
+      "name": "NYC Board of Elections ENR (enr.boenyc.gov)",
+      "url": "https://enr.boenyc.gov/",
+      "cost": "Free",
+      "latency": "Unverified. NYC ENR is normally updated through election night as scanner results are reported. Cadence not confirmed.",
+      "granularity": "NYC only: borough, council district, assembly district, election district (precinct-level) per NYC BOE's normal ENR design (not directly confirmed tonight)",
+      "verified_live": "PARTIAL. Root returns HTTP 200 but it is a static redirect page (last-modified Aug 14 2024) with a 3 second meta refresh to https://vote.nyc/page/election-results-summary. Guessed paths /data.json, /Default.aspx and /api/ all return 302 back to the root. A search hit shows a path like /OF84CY0PY1.html, which also returns the redirect. Sub-path /rcv/ is linked from vote.nyc.",
+      "notes": "No public API found. vote.nyc (Drupal 9 behind Cloudflare, HTTP 200 for the results summary page) links to enr.boenyc.gov, enr.boenyc.gov/rcv/ and per-election PDF result files (e.g. /sites/default/files/pdf/election_results/2026/20260623Primary%20Election/...pdf). The ENR page appears to redirect to the vote.nyc summary when no live election is configured. It is possible live election data is only populated after polls close. Only useful as a reference for NYC, not Dutchess. A browser network capture after 9 PM is needed to find any JSON.",
+      "auth": "None",
+      "official": "Yes (NYC BOE, unofficial election-night returns)"
+    },
+    {
+      "name": "Dutchess County BOE results page",
+      "url": "https://elections.dutchessny.gov/election-results/",
+      "cost": "Free",
+      "latency": "Official certified PDFs only, posted days to weeks after the election (e.g. GE25 certification dated 11-21, GE24 dated 12-5, primary 2026 dated 7-10). No election-night live results feed was found on the page.",
+      "granularity": "County; PDFs include 'Detailed Results by Contest Table' and 'Election District Level Results' (ED = precinct-level) for some elections",
+      "verified_live": "YES for the page: HTTP 200, WordPress behind nginx/Cloudflare edge cache. Last modified 2026-07-10. NO live/API results confirmed.",
+      "notes": "The site exposes the standard WordPress REST API (https://elections.dutchessny.gov/wp-json/ and /wp-json/wp/v2/pages/1523, both confirmed responding), but that serves page content, not election data. The results page lists only PDF links (wp-content/uploads/YYYY/MM/*.pdf). I found no JSON, CSV, Clarity/ENR/Scytl/Civera/ElectionStats link, and the text grep for 'night/unofficial/live' only hit CSS. So Dutchess has no API found. Dutchess election-night numbers most likely flow through the NYS ENR site (counties report to the State Board). The county gov page https://dutchessny.gov/Departments/Board-of-Elections/Board-of-Elections.htm returns 200 (IIS, last modified 2026-10-01) and links to elections.dutchessny.gov/election-results/. Prior-year ED-level PDFs could be parsed for historical comparison.",
+      "auth": "None",
+      "official": "Yes (county BOE), PDF-only"
+    }
+  ],
+  "summary": "No usable public API found in my slice, and none confirmed live. (1) NYS ENR (nyenr.elections.ny.gov) and elections.ny.gov both return a Cloudflare managed-challenge 403 to curl and WebFetch, so I could not see the site's format, JSON endpoints or county detail. All I have is secondhand: search snippets say results are unofficial, come from county boards' reports, and appear after the 9 PM ET close. Next step is a real browser with network capture (Playwright or Chrome tools) after 9 PM ET, to find the XHR feed; plain HTTP scraping will likely be blocked. (2) NYC BOE enr.boenyc.gov is currently a static redirect to vote.nyc/page/election-results-summary. Guessed data paths all 302 back to root, so no JSON found. vote.nyc links to /rcv/ and PDF results, but nothing was confirmed live. (3) Dutchess County BOE (elections.dutchessny.gov/election-results/) is a WordPress site with certified-results PDFs only (including ED-level for some elections), posted after the fact. Its wp-json API is page content only. I found no live feed or API, so for Dutchess election-night data the NYS ENR site is the likely route. Timing caveat: probes ran at about 00:18 GMT Nov 4 (7:18 PM ET Nov 3), before NY polls closed at 9 PM ET. A live feed that appears only after the close could not have been seen. Re-probe after 9 PM ET, ideally with a browser. Nothing here confirms enough data to build on from official NY sources alone; a dashboard would need a national aggregator (covered by other slices) with NYS ENR as a scrape-via-browser supplement.\"}"
+}

@@ -1,0 +1,13 @@
+/* AHEAD OF THE NEWS takeover (0.8vw–71vw × 8–79vh) */
+.ah-board { position: fixed; left: .8vw; top: 8vh; width: 70.2vw; height: 71vh; padding: 1.4vh 1.6vw; display: flex; flex-direction: column; gap: 1vh;
+  background: linear-gradient(160deg, rgba(10,14,48,.97), rgba(4,6,24,.98)); border: 1px solid var(--yellow); box-shadow: 0 0 2vw rgba(255,210,63,.2);
+  opacity: 0; visibility: hidden; transform: translateX(-2vw); transition: opacity .4s, transform .4s, visibility 0s .4s; overflow: hidden; }
+.ah-board.on { opacity: 1; visibility: visible; transform: none; transition: opacity .4s, transform .4s; }
+.ah-kick { font: 900 1.4vw var(--font-display); letter-spacing: .12em; color: var(--yellow); text-shadow: 0 0 .8vw rgba(255,210,63,.5); }
+.ah-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(0, 1fr); gap: 1vh 1vw; }
+.ah-c { border: 2px solid var(--pc); border-left: .6vw solid var(--pc); background: color-mix(in srgb, var(--pc) 12%, transparent); padding: 1vh 1vw; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+.ah-k { font: 900 .95vw var(--font-display); letter-spacing: .15em; color: var(--yellow); }
+.ah-big { font: 900 2vw/1.1 var(--font-display); color: #fff; text-shadow: 0 0 .8vw var(--pc); margin: .3vh 0; }
+.ah-line { font: 700 1.05vw var(--font-ui); color: var(--text); }
+.ah-foot { font: 700 .8vw var(--font-ui); color: var(--muted); }
+.ah-none { font: 700 1.3vw var(--font-ui); color: #3dff8a; }

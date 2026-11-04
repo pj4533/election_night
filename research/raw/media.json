@@ -1,0 +1,114 @@
+{
+  "key": "media",
+  "sources": [
+    {
+      "name": "NYT election results JSON (undocumented, 2026 LIVE)",
+      "url": "https://static01.nyt.com/elections-assets/pages/data/2026-11-03/results-new-york-governor.json",
+      "cost": "Free, no auth, CORS open (access-control-allow-origin: *). ToS risk: undocumented, NYT ToS prohibits scraping/commercial reuse; gray area for personal dashboards.",
+      "latency": "Origin is a GCS bucket behind a CDN with cache-control max-age=5 and stale-while-revalidate=5. Last-modified was 00:18:19 GMT, 22s before my request, so it is updating every few seconds. Data is AP-sourced (provider field) plus NYT model estimates.",
+      "granularity": "Race level, down to county. reporting_units has levels state and county. NY governor file has 63 reporting units, including Dutchess (156 precincts total). House file has NY-17 and NY-18 with a Dutchess county row each (21 and 135 precincts). Per-unit fields: eevp (NYT estimated expected vote pct), precincts_reporting/total, total_votes, candidates[].votes.total, vote-type splits, called_by, winner_accepted_at.",
+      "verified_live": "YES, curled at about 7:18pm ET Nov 3 2026. HTTP 200. Sizes: senate 0.99MB (35 races), house 9.2MB (436 races), governor 0.8MB, results-new-york 1.4MB, results-new-york-governor 308KB. All counts were still 0 for NY because NY polls had not closed yet (9pm ET close). Not verified with real vote counts.",
+      "notes": "Patterns that 404: results-president (no presidential race in 2026), results-new-york-senate, results-ballot-measures, and 2022-dated paths. The 2024 file pages/data/2024-11-05/results-president.json still works (832KB), so the pages/data/{date}/results-{office|state}.json pattern is stable and good for test replays. The older api/ pattern (2020/data/api/2020-11-03/votes-remaining-page/national/president.json) still returns 200 (6.5MB). Each file also carries partyControlTimeseriesData and pollClosingTimes. Use If-None-Match/ETag to poll cheaply; poll every 10-30s and not faster. The house file is 9MB, so prefer the state-scoped file. NYT can change or block this at any time.",
+      "official": "No. Undocumented, scraped feed.",
+      "format": "JSON",
+      "auth": "None"
+    },
+    {
+      "name": "CNN data.cnn.com ELECTION feed",
+      "url": "https://data.cnn.com/ELECTION/{YYYYMMMDD}/...",
+      "cost": "Free, no auth. ToS risk: undocumented, CNN terms restrict automated scraping.",
+      "latency": "Unknown for 2026",
+      "granularity": "Historically national/state/county JSON, plus xpoll (2016: data.cnn.com/ELECTION/2016/US/xpoll/Pfull.json)",
+      "verified_live": "NO. data.cnn.com/ELECTION/2026NOV03/president/national/summary.json returned 404 XML (the bucket responds, but the path guess is wrong or not yet published). cnn.com/election/2026/results returned 404. Web search found only 2016 and 2020 references, no current pattern.",
+      "notes": "I could not find the current 2026 path. Best route is to open CNN's live results page in a browser and read the network tab (Playwright or Chrome tools are available here). Treat as unconfirmed.",
+      "official": "No",
+      "format": "JSON (historical)",
+      "auth": "None"
+    },
+    {
+      "name": "Politico election data feed",
+      "url": "https://www.politico.com/election-data/pub/{date}/{office}/national.json (guessed pattern)",
+      "cost": "Unknown / free if found. ToS risk.",
+      "latency": "Unknown",
+      "granularity": "Unknown",
+      "verified_live": "NO. My guessed 2024 and 2026 paths returned 404 HTML. The results page www.politico.com/2026-election/results/ returned 403 to curl (bot block). Pattern not confirmed.",
+      "notes": "Politico results are powered by AP/Decision Desk, with the feed hosted on their own domain. Needs browser network-tab discovery. Bot protection is present.",
+      "official": "No",
+      "format": "JSON (presumed)",
+      "auth": "None presumed"
+    },
+    {
+      "name": "Washington Post results",
+      "url": "https://www.washingtonpost.com/elections/election-results/",
+      "cost": "n/a",
+      "latency": "n/a",
+      "granularity": "n/a",
+      "verified_live": "NO. curl failed to connect (000). Not probed further.",
+      "notes": "Unexplored. Likely bot-blocked, with paywall and strict ToS.",
+      "official": "No",
+      "format": "Unknown",
+      "auth": "Unknown"
+    },
+    {
+      "name": "NBC News results",
+      "url": "https://www.nbcnews.com/politics/2026-elections/results",
+      "cost": "n/a",
+      "latency": "n/a",
+      "granularity": "n/a",
+      "verified_live": "NO. Guessed page URL returned 404 (a page, so the site is reachable). Feed not found.",
+      "notes": "NBC uses Decision Desk or its own feeds. Not discovered.",
+      "official": "No",
+      "format": "Unknown",
+      "auth": "Unknown"
+    },
+    {
+      "name": "Fox News elections",
+      "url": "https://www.foxnews.com/elections",
+      "cost": "n/a",
+      "latency": "n/a",
+      "granularity": "n/a",
+      "verified_live": "Page returns 200 (1.2MB HTML). No JSON feed was extracted.",
+      "notes": "Fox uses the AP Decision Desk feed. Would need the network tab or HTML inspection.",
+      "official": "No",
+      "format": "HTML",
+      "auth": "None"
+    },
+    {
+      "name": "AP interactives / AP Elections API",
+      "url": "https://interactives.ap.org/elections/ and https://api.ap.org/v3/elections",
+      "cost": "The AP Elections API is paid. I did not retrieve published pricing. Enterprise contracts are typical and costly.",
+      "latency": "Fastest official source (AP is the source for NYT and most others). Likely seconds to a couple of minutes behind the counties.",
+      "granularity": "Precinct and county, with race calls",
+      "verified_live": "api.ap.org/v3/elections returned 403 JSON, so the endpoint exists and needs an API key. interactives.ap.org returned 403 to curl (bot block).",
+      "notes": "This is the official, sanctioned route. It is out of reach without a contract. NYT's feed is effectively an AP mirror with NYT estimates added.",
+      "official": "Yes (the API); the embeds are semi-official",
+      "format": "JSON",
+      "auth": "API key"
+    },
+    {
+      "name": "Dutchess County BOE",
+      "url": "https://elections.dutchessny.gov/",
+      "cost": "Free",
+      "latency": "Unknown. County results pages typically post unofficial results after the polls close.",
+      "granularity": "County and precinct (likely)",
+      "verified_live": "Homepage returns 200 (108KB HTML). I did not look for a results URL or an API. Outside my assigned slice.",
+      "notes": "Check it for a results link and network-tab JSON, as other counties use ElectionStats or Clarity-style platforms.",
+      "official": "Yes",
+      "format": "HTML",
+      "auth": "None"
+    },
+    {
+      "name": "Community scrapers and references (prior art)",
+      "url": "https://github.com/eebasso/nyt-2020-election-scraper and https://github.com/alex/nyt-2020-election-scraper",
+      "cost": "Free",
+      "latency": "n/a",
+      "granularity": "n/a",
+      "verified_live": "Not run. Web search results only.",
+      "notes": "These document the git-scraping pattern for NYT JSON in 2020 (commit each poll to a repo for a time series). Their 2020 URL scheme still returns 200. Also: github.com/favstats/uselection2020-edisonresearch-results (Edison data).",
+      "official": "No",
+      "format": "n/a",
+      "auth": "n/a"
+    }
+  ],
+  "summary": "The best find is the NYT undocumented JSON feed, which is live for the 2026 midterms. The pattern is https://static01.nyt.com/elections-assets/pages/data/2026-11-03/results-{senate|house|governor|new-york|new-york-governor}.json. I curled it at about 7:18pm ET and got HTTP 200, no auth, and CORS open. Headers show cache-control max-age=5 with a last-modified stamp 22s old, so the files refresh every few seconds. The data is AP-sourced and includes NYT model estimates. It goes down to county level: the NY governor file has 63 units, and Dutchess County rows exist in the governor race (156 precincts), NY-17 (21 precincts) and NY-18 (135 precincts). Vote counts were all 0 for NY when I checked, because NY polls had not closed (9pm ET), so real values are unverified. There is no presidential race this year, so results-president and results-ballot-measures return 404. ToS risk is real: it is undocumented, NYT's terms prohibit scraping and commercial reuse, and the files could be changed or blocked at any time. It is fine for a personal dashboard, but poll gently (10-30s, ETag) and credit NYT/AP. For CNN, Politico, WaPo, NBC and Fox I could not confirm a 2026 feed. My path guesses returned 404 or bot blocks (403/000), and web search only turned up 2016 and 2020 patterns. The next step there is to capture network requests in a real browser. The official AP Elections API (api.ap.org/v3/elections) responds 403 and needs a paid key, with no published pricing found. I did not examine Dutchess BOE results beyond confirming that elections.dutchessny.gov loads (200). A dashboard looks feasible: poll the NYT state-scoped files from a small server and render NY governor and House results by county.\"}"
+}

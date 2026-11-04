@@ -1,0 +1,10 @@
+node_modules
+dist
+logs
+logs-sim
+data-sim
+data/raw
+data/history.jsonl
+.playwright-mcp
+research
+logs-boot.txt

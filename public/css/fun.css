@@ -1,0 +1,23 @@
+/* FUN meme cards takeover (0.8vw–71vw × 8–79vh) */
+.fn-board { position: fixed; left: .8vw; top: 8vh; width: 70.2vw; height: 71vh; background: #05031a; border: 1px solid var(--magenta); box-shadow: 0 0 2vw rgba(255,43,214,.25);
+  opacity: 0; visibility: hidden; transform: translateX(-2vw); transition: opacity .4s, transform .4s, visibility 0s .4s; overflow: hidden; }
+.fn-board.on { opacity: 1; visibility: visible; transform: none; transition: opacity .4s, transform .4s; }
+.fn-card { --h: var(--magenta); position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 2vh 1.5vw; text-align: center; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 62%, color-mix(in srgb, var(--h) 45%, transparent), transparent 62%), repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 2px, transparent 2px 5vh), linear-gradient(180deg, #14053a, #05031a);
+  animation: fnpop .35s ease-out; }
+.fn-card.h-c { --h: var(--cyan, #19e3ff); } .fn-card.h-y { --h: var(--yellow); } .fn-card.h-r { --h: #ff3b5c; }
+@keyframes fnpop { from { transform: scale(1.04); opacity: 0; } to { transform: none; opacity: 1; } }
+.fn-top, .fn-bot { font: 900 4.6vw/1.05 Impact, 'Arial Black', var(--font-display); color: #fff; letter-spacing: .02em; width: 100%; max-height: 24vh; overflow: hidden;
+  -webkit-text-stroke: .35vw #000; paint-order: stroke fill; text-shadow: .25vw .25vw 0 #000, -.25vw .25vw 0 #000, .25vw -.25vw 0 #000, -.25vw -.25vw 0 #000; }
+.fn-bot { font-size: 3.8vw; }
+.fn-big { flex: 1; display: flex; align-items: center; justify-content: center; gap: 1.5vw; font: 900 15vw/1 var(--font-display); color: #fff; text-shadow: 0 0 2vw var(--h), 0 0 5vw var(--h); }
+.fn-big i { font-style: normal; color: var(--h); }
+.fn-big .fn-d { color: #4da3ff; } .fn-big .fn-r { color: #ff5a6e; }
+.fn-big.zero { font-family: Impact, 'Arial Black', sans-serif; font-size: 30vw; text-shadow: 0 0 3vw #ff3b5c, 0 0 8vw #ff3b5c; }
+.fn-big.txt { font-size: 7.5vw; line-height: 1.05; padding: 0 2vw; }
+.fn-big.pts { font-size: 18vw; }
+.fn-big.two { flex-wrap: wrap; font-size: 8vw; gap: .5vw 2vw; line-height: 1.1; }
+.fn-big.two small { font: 900 1.6vw var(--font-display); color: var(--yellow); flex-basis: 100%; margin-top: -.5vh; letter-spacing: .1em; }
+.fn-big.two span { flex-basis: 100%; }
+.fn-dots { position: absolute; right: 1vw; top: 1vh; display: flex; gap: .4vw; }
+.fn-dots b { width: .8vw; height: .8vw; border-radius: 50%; background: rgba(255,255,255,.3); } .fn-dots b.on { background: var(--yellow); }

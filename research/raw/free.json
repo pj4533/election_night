@@ -1,0 +1,150 @@
+{
+  "key": "free",
+  "sources": [
+    {
+      "name": "Google Civic Information API - Elections/voterInfo/divisions",
+      "url": "https://www.googleapis.com/civicinfo/v2/elections",
+      "cost": "Free, API key required (quota-limited)",
+      "latency": "N/A - no results data",
+      "granularity": "Election list, polling places, contests/candidates, OCD division IDs (divisionByAddress)",
+      "verified_live": "Responds (HTTP 403 without API key = service up). Not tested with a key.",
+      "notes": "Representatives API turned down April 2025 (confirmed by Google group posts; endpoint /representatives still returns the generic 403 so I could not confirm shutdown by probing). Elections and Divisions APIs remain. It has NO vote counts. Useful only for ballot contests/OCD IDs and for joining other datasets.",
+      "auth": "API key",
+      "format": "JSON",
+      "official": "Official (Google)"
+    },
+    {
+      "name": "civicAPI (civicapi.org)",
+      "url": "https://civicapi.org",
+      "cost": "Advertised as free",
+      "latency": "Advertises 'up-to-the-minute' results and race calls for the Nov 3 2026 general; actual lag unverified",
+      "granularity": "Per-race; claimed state/county; precinct unknown",
+      "verified_live": "Homepage 200 and has a 'America's Decision 2026' page. API paths I guessed (/api/v2/races returned 502, /api/v2/race/public 404). Real endpoint docs not found. Third-party directories list it as no-auth.",
+      "notes": "Most promising free live aggregator found, but its data source (likely AP or scraped state feeds) and reliability are unverified. Needs a look at its docs or Embed page and network tab in a browser. Single-vendor risk.",
+      "auth": "None claimed",
+      "format": "JSON (claimed)",
+      "official": "Unofficial third-party aggregator"
+    },
+    {
+      "name": "Dutchess County BOE results (Enhanced Voting ENR)",
+      "url": "https://app.enhancedvoting.com/results/public/dutchess-county-ny/GE2026",
+      "cost": "Free",
+      "latency": "Election night, updated as the county uploads; county reportedly posts slowly through evening and next day. Exact interval unverified.",
+      "granularity": "County contests, likely down to election district and town",
+      "verified_live": "Page returns 200 (an Angular SPA, title 'Election Results'). Linked from elections.dutchessny.gov homepage as the GE2026 result page. The JSON API behind it was not found: static JS only references Mapbox and /results/public/api/... returned 404.",
+      "notes": "No documented public API. The SPA must call a backend, so inspect network requests in a real browser (Playwright or Chrome tools) to get the JSON. That would be undocumented, so scraping politely is a risk. Fallback is the official PDFs at elections.dutchessny.gov/election-results/ (page last modified 2026-07-10). Past results were PDFs such as 'GE25 Official Summary Results' and 'ED Contest Overview', posted after election night.",
+      "auth": "None",
+      "format": "HTML SPA backed by undiscovered JSON; PDFs as fallback",
+      "official": "Official county site, but no sanctioned API"
+    },
+    {
+      "name": "NY State Board of Elections results",
+      "url": "https://elections.ny.gov/election-results",
+      "cost": "Free",
+      "latency": "State posts unofficial results on election night; certification weeks later. Unverified.",
+      "granularity": "Statewide, county, ED in downloadable files historically",
+      "verified_live": "Blocked: HTTP 403 Cloudflare 'Just a moment' challenge from curl. results.elections.ny.gov also returned 403. Needs a real browser.",
+      "notes": "Dutchess BOE points to the state board for additional data. Cloudflare protection makes scripted access hard.",
+      "auth": "None, but bot challenge",
+      "format": "HTML/PDF/XLSX",
+      "official": "Official"
+    },
+    {
+      "name": "Clarity Elections (SOE/Scytl) ENR feeds plus openelections/clarify",
+      "url": "https://github.com/openelections/clarify",
+      "cost": "Free, MIT license",
+      "latency": "Real-time (minutes) on election night, for the jurisdictions that use Clarity (e.g. GA, CO, UT, many counties). Depends on each county.",
+      "granularity": "Precinct level in detail XML",
+      "verified_live": "GitHub repo exists, last push 2025-11-12, not archived. web.enr.clarityelections.com did not connect from curl (HTTP 000). Dutchess/NY do NOT use Clarity (they use Enhanced Voting), so this does not help for your county.",
+      "notes": "Library parses XML zip (reports/detailxml.zip) and JSON endpoints like json/en/summary.json per a wiki (only partly confirmed). Does not do downloading or unzipping for you. Unofficial use of public feeds.",
+      "auth": "None",
+      "format": "XML/JSON",
+      "official": "Vendor's public feeds, not a documented API"
+    },
+    {
+      "name": "elex (newsdev/elex, NYT AP client)",
+      "url": "https://github.com/newsdev/elex",
+      "cost": "Code free; requires paid AP Elections API key",
+      "latency": "Near real-time (AP)",
+      "granularity": "National to county/township",
+      "verified_live": "Repo exists but is ARCHIVED, last push 2022-09-07, targets AP API v2.0. api.ap.org/v2 returns 401 'apikey is invalid or unauthorized' (service up).",
+      "notes": "Not a free data source. A client for paid AP data. Stale code, may need patching.",
+      "auth": "AP API key (paid)",
+      "format": "CLI to CSV/JSON/Postgres",
+      "official": "Open-source client; AP is official"
+    },
+    {
+      "name": "OpenElections (openelections-data-ny)",
+      "url": "https://github.com/openelections/openelections-data-ny",
+      "cost": "Free, CC-style open data",
+      "latency": "POST-election. Volunteer-cleaned data lags weeks to months after certification. Not live.",
+      "granularity": "Precinct level CSVs (county files in year/counties folders)",
+      "verified_live": "GitHub API 200; last push 2026-10-23; latest commit 2026-08-17. Has 2024 directory. Did not confirm presence of 2025/2026 general data.",
+      "notes": "Great for historical baselines for Dutchess (swing/turnout comparison), not for live. Data API at GitHub raw files.",
+      "auth": "None (GitHub rate limit 60/hr unauthenticated)",
+      "format": "CSV in git",
+      "official": "Volunteer project"
+    },
+    {
+      "name": "MIT Election Data and Science Lab",
+      "url": "https://electionlab.mit.edu/data",
+      "cost": "Free",
+      "latency": "Post-certification, months to years",
+      "granularity": "County presidential/House/Senate, precinct-level returns on Harvard Dataverse",
+      "verified_live": "electionlab.mit.edu/data returns 200. Harvard Dataverse API /api/info/version returned 200 (v6.12.1).",
+      "notes": "Historical only. Good for context and baselines. Not live.",
+      "auth": "None (Dataverse API token optional)",
+      "format": "CSV/TAB via Dataverse API",
+      "official": "Academic, official dataset"
+    },
+    {
+      "name": "FEC OpenFEC API",
+      "url": "https://api.open.fec.gov/v1/",
+      "cost": "Free; DEMO_KEY works for light use, free key from api.data.gov for more",
+      "latency": "Campaign finance filings, not results",
+      "granularity": "Candidate/committee",
+      "verified_live": "Yes: /elections/?api_key=DEMO_KEY&cycle=2026&office=house&state=NY&district=18 returned 200 with 3 candidates (e.g. Ryan, Patrick, coverage to 2026-10-14).",
+      "notes": "NOT election results. Could enrich a dashboard with candidate cash on hand and fundraising. Dutchess is mostly NY-18, which is the district queried.",
+      "auth": "API key (DEMO_KEY ok)",
+      "format": "JSON",
+      "official": "Official federal"
+    },
+    {
+      "name": "Wikipedia (MediaWiki API / pages)",
+      "url": "https://en.wikipedia.org/api/rest_v1/page/summary/2026_United_States_elections",
+      "cost": "Free",
+      "latency": "Volunteer-edited, minutes to hours behind AP calls on election night, sometimes faster for major races. Not machine-structured.",
+      "granularity": "Race-level, some county tables",
+      "verified_live": "Yes, REST summary returned 200. NY House elections page exists and returns 200.",
+      "notes": "Scraping tables is brittle; useful as a sanity cross-check, not a primary feed.",
+      "auth": "None (set a User-Agent)",
+      "format": "HTML/wikitext/JSON",
+      "official": "Unofficial crowd-sourced"
+    },
+    {
+      "name": "AP Elections API (reference, paid)",
+      "url": "https://api.ap.org/v2",
+      "cost": "Paid, pricing not published (quote-based, typically expensive for non-media)",
+      "latency": "The industry real-time standard, seconds to minutes",
+      "granularity": "National to precinct-ish, race calls",
+      "verified_live": "Endpoint responds 401 without key (alive).",
+      "notes": "Outside my free slice; included because elex and other tools depend on it. Probably not cheap for a hobbyist.",
+      "auth": "API key (contract)",
+      "format": "JSON",
+      "official": "Official"
+    },
+    {
+      "name": "GitHub generic live-results scrapers",
+      "url": "https://github.com/search?q=election+results+scraper",
+      "cost": "Free",
+      "latency": "Whatever they scrape",
+      "granularity": "Varies",
+      "verified_live": "GitHub search found no maintained, US-wide live scraper. Hits were India/Kenya/demo projects. Only clarify (active-ish) and elex (archived) matter.",
+      "notes": "No turnkey open-source US live aggregator found. A search for NYT's unofficial JSON endpoint found nothing and would likely violate NYT terms.",
+      "auth": "N/A",
+      "format": "N/A",
+      "official": "N/A"
+    }
+  ],
+  "summary": "Bottom line for the free tier: nothing free and documented gives live US results. The only free live-ish options are (1) civicAPI.org (claims free, up-to-the-minute 2026 results; endpoints unverified, my guesses 502/404, so inspect its Embed/Help pages), and (2) scraping state/county sites. For Dutchess County, the BOE posts results via Enhanced Voting at app.enhancedvoting.com/results/public/dutchess-county-ny/GE2026 (200 OK, Angular SPA). It has no documented API; the backing JSON must be found with browser dev tools, and the county historically posts slowly (PDFs after the night). The NY State BOE site is behind a Cloudflare challenge (403 to curl). Post-election and context sources are all free and working: OpenElections NY (precinct CSVs, pushed 2026-10-23), MIT Election Lab/Harvard Dataverse (API up), FEC (verified returning NY-18 2026 candidates with DEMO_KEY, but it is finance, not results), Wikipedia (live-ish human-edited). Google Civic: Representatives API was shut down April 2025; Elections/Divisions remain (key required, probed: service up, 403 without key) but contain no vote counts. elex is archived since 2022 and needs a paid AP key (api.ap.org returns 401, alive). Clarity/clarify works only for Clarity jurisdictions, and Dutchess is not one. Verdict: a dashboard is feasible, using a paid or semi-official live feed for statewide/national races plus the discovered Enhanced Voting JSON for Dutchess, with OpenElections/MIT for baselines. Caveats: I did not verify civicAPI's real endpoint, nor Enhanced Voting's JSON, nor certain 2025/2026 OpenElections coverage.\""
+}
